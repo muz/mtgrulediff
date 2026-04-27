@@ -218,6 +218,10 @@ def render_change_nav(nav_items):
             else:
                 label = f"{fo}\u2013{lo} \u2192 {fn}\u2013{ln}"
             links.append(f'<a class="count-pill renumbered" href="#{anchor_id}">{label}</a>')
+        elif status == "added_group":
+            fn, ln = html.escape(entry['first']), html.escape(entry['last'])
+            label = f"+{fn}\u2013{ln}" if fn != ln else f"+{fn}"
+            links.append(f'<a class="count-pill added" href="#{anchor_id}">{label}</a>')
         else:
             pill_class = STATUS_CLASS.get(status, "modified")
             if status in ("renumbered", "renumbered_and_modified"):
@@ -380,6 +384,35 @@ def render_changed_rule(entry, anchor_id):
 
 
 _MIN_RENUMBER_GROUP = 3
+_MIN_ADDED_GROUP = 3
+
+
+def render_added_group(entries, anchor_id):
+    count = len(entries)
+    first = html.escape(entries[0]["rule"])
+    last = html.escape(entries[-1]["rule"])
+    range_hint = f"{first}\u2013{last}" if count > 1 else first
+    summary_label = f"{count} rule{'s' if count != 1 else ''} added"
+
+    rows = []
+    for e in entries:
+        rows.append(
+            f'<div class="doc-renumber-row">'
+            f'<span class="doc-rule-num added">{html.escape(e["rule"])}</span>'
+            f'<span class="renumber-text">{html.escape(e.get("text", ""))}</span>'
+            f'</div>'
+        )
+
+    return (
+        f'<details class="renumber-group added-group" id="{anchor_id}">'
+        f'<summary>'
+        f'<span class="expand-chevron">\u203a</span>'
+        f'<span>{summary_label}</span>'
+        f'<span class="range-hint">{range_hint}</span>'
+        f'</summary>'
+        f'<div class="renumber-rows">{" ".join(rows)}</div>'
+        f'</details>'
+    )
 
 
 def render_document_view(diff):
@@ -392,11 +425,34 @@ def render_document_view(diff):
     change_counter = 0
     current_unchanged = []
     current_renumbered = []  # buffer for consecutive pure-renumber entries
+    current_added = []       # buffer for consecutive added entries
 
     def flush_unchanged():
         if current_unchanged:
             segments.append(("group", list(current_unchanged)))
             current_unchanged.clear()
+
+    def flush_added():
+        nonlocal change_counter
+        if not current_added:
+            return
+        entries = list(current_added)
+        current_added.clear()
+        if len(entries) >= _MIN_ADDED_GROUP:
+            change_counter += 1
+            anchor_id = f"c{change_counter}"
+            segments.append(("added_group", entries, anchor_id))
+            nav_items.append(("added_group", {
+                "first": entries[0]["rule"],
+                "last":  entries[-1]["rule"],
+                "count": len(entries),
+            }, anchor_id))
+        else:
+            for entry in entries:
+                change_counter += 1
+                anchor_id = f"c{change_counter}"
+                segments.append(("changed", entry, anchor_id))
+                nav_items.append((entry["status"], entry, anchor_id))
 
     def flush_renumbered():
         nonlocal change_counter
@@ -429,13 +485,20 @@ def render_document_view(diff):
     for entry in all_rules:
         if entry["status"] == "unchanged":
             flush_renumbered()
+            flush_added()
             current_unchanged.append(entry)
         elif entry["status"] in ("renumbered", "reference_renumbered"):
             flush_unchanged()
+            flush_added()
             current_renumbered.append(entry)
+        elif entry["status"] == "added":
+            flush_unchanged()
+            flush_renumbered()
+            current_added.append(entry)
         else:
             flush_unchanged()
             flush_renumbered()
+            flush_added()
             change_counter += 1
             anchor_id = f"c{change_counter}"
             segments.append(("changed", entry, anchor_id))
@@ -443,6 +506,7 @@ def render_document_view(diff):
 
     flush_unchanged()
     flush_renumbered()
+    flush_added()
 
     parts = []
     for seg in segments:
@@ -450,6 +514,8 @@ def render_document_view(diff):
             parts.append(render_unchanged_group(seg[1]))
         elif seg[0] == "renumber_group":
             parts.append(render_renumbered_group(seg[1], seg[2]))
+        elif seg[0] == "added_group":
+            parts.append(render_added_group(seg[1], seg[2]))
         else:
             parts.append(render_changed_rule(seg[1], seg[2]))
 
@@ -990,6 +1056,20 @@ h2 { margin-top: 30px; }
 .renumber-group > summary::marker { display: none; }
 .renumber-group > summary:hover { background: #e6f1fb; }
 .renumber-group[open] > summary .expand-chevron { transform: rotate(90deg); }
+
+/* Added group — same layout as renumber-group but green */
+.added-group > summary {
+  border-color: #7cbf93;
+  color: #0f5132;
+  background: #f0faf3;
+}
+.added-group > summary:hover { background: #ddf3e4; }
+.added-group .doc-renumber-row {
+  grid-template-columns: 7ch 1fr;
+  grid-template-areas: 'num text';
+}
+.added-group .doc-renumber-row .doc-rule-num { grid-area: num; }
+.added-group .doc-renumber-row .renumber-text { grid-area: text; white-space: normal; word-break: break-word; }
 .renumber-rules-list {
   border-left: 2px solid #8fb9d9;
   margin-left: 18px;
@@ -1006,9 +1086,9 @@ h2 { margin-top: 30px; }
 }
 .renumber-row-text {
   color: var(--muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  word-break: break-word;
 }
 .renumber-refs-badge {
   display: inline-flex;

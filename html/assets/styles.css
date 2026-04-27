@@ -437,6 +437,20 @@ h2 { margin-top: 30px; }
 .renumber-group > summary::marker { display: none; }
 .renumber-group > summary:hover { background: #e6f1fb; }
 .renumber-group[open] > summary .expand-chevron { transform: rotate(90deg); }
+
+/* Added group — same layout as renumber-group but green */
+.added-group > summary {
+  border-color: #7cbf93;
+  color: #0f5132;
+  background: #f0faf3;
+}
+.added-group > summary:hover { background: #ddf3e4; }
+.added-group .doc-renumber-row {
+  grid-template-columns: 7ch 1fr;
+  grid-template-areas: 'num text';
+}
+.added-group .doc-renumber-row .doc-rule-num { grid-area: num; }
+.added-group .doc-renumber-row .renumber-text { grid-area: text; white-space: normal; word-break: break-word; }
 .renumber-rules-list {
   border-left: 2px solid #8fb9d9;
   margin-left: 18px;
@@ -453,9 +467,9 @@ h2 { margin-top: 30px; }
 }
 .renumber-row-text {
   color: var(--muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  word-break: break-word;
 }
 .renumber-refs-badge {
   display: inline-flex;

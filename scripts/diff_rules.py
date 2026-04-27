@@ -81,6 +81,15 @@ def is_reference_only_change(old_text, new_text, renumber_map, section_renumber_
     predicted = _RULE_SECTION_REF_RE.sub(
         lambda m: m.group(1) + section_renumber_map.get(m.group(2), m.group(2)), predicted
     )
+    # Third pass: bare section numbers not preceded by "rule/rules" (e.g. "and 729,"
+    # at the end of a "see rules X, and Y" list).  Only substitutes numbers that are
+    # actually in section_renumber_map, so false positives are impossible.
+    if section_renumber_map:
+        predicted = re.sub(
+            r'\b(\d+)\b(?!\.)',
+            lambda m: section_renumber_map.get(m.group(1), m.group(1)),
+            predicted,
+        )
     return normalize_text(predicted) == normalize_text(new_text)
 
 
@@ -262,6 +271,15 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
         del removed_after[key]
     modified = [e for e in modified if e["rule"] not in disp_keys_mod]
     modified.sort(key=lambda r: rule_sort_key(r["rule"]))
+
+    # Second renumber pass: displacement detection above may have injected new
+    # entries into removed_after (old occupants pushed out of displaced keys).
+    # Run detect_renumberings again on the updated pools to catch those pairs
+    # (e.g. old 725.1 initiative → new 726.1 initiative).
+    extra_renumbered, removed_after, added_after = detect_renumberings(
+        removed_after, added_after, threshold=renumber_threshold
+    )
+    renumbered.extend(extra_renumbered)
 
     # Build renumber maps first so they can be used in the split below.
     renumber_map = {r["old_rule"]: r["new_rule"] for r in renumbered}

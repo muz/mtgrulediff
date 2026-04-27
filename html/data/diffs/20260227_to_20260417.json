@@ -5,14 +5,19 @@
   "new_effective_date": "April 17, 2026",
   "summary": {
     "unchanged": 2985,
-    "modified": 14,
-    "added": 21,
-    "removed": 3,
-    "renumbered": 101,
-    "renumbered_and_modified": 0,
-    "reference_renumbered": 17
+    "modified": 21,
+    "added": 18,
+    "removed": 0,
+    "renumbered": 103,
+    "renumbered_and_modified": 1,
+    "reference_renumbered": 10
   },
   "modified": [
+    {
+      "rule": "104.6",
+      "old_text": "One card (Karn Liberated) restarts the game. All players still in the game when it restarts then immediately begin a new game. See rule 726, \u201cRestarting the Game.\u201d",
+      "new_text": "One card (Karn Liberated) restarts the game. All players still in the game when it restarts then immediately begin a new game. See rule 727, \u201cRestarting the Game.\u201d"
+    },
     {
       "rule": "107.3e",
       "old_text": "If a spell or ability refers to the {X} or X in the mana cost, alternative cost, additional cost, or activation cost of another object, any X in that spell or ability\u2019s text uses the value of X chosen or defined for the other object.",
@@ -22,6 +27,11 @@
       "rule": "118.7e",
       "old_text": "If a cost is reduced by an amount of mana represented by a hybrid mana symbol, the player paying that cost chooses one half of that symbol at the time the cost reduction is applied (see rule 601.2f). If a colored half is chosen, the cost is reduced by one mana of that color. If a generic half is chosen, the cost is reduced by an amount of generic mana equal to that half\u2019s number.",
       "new_text": "If a cost is reduced by an amount of mana represented by a hybrid mana symbol, the player paying that cost chooses one half of that symbol at the time the cost reduction is applied (see rule 601.2f). If a colored or colorless half is chosen, the cost is reduced by one mana of that type. If a generic half is chosen, the cost is reduced by an amount of generic mana equal to that half\u2019s number."
+    },
+    {
+      "rule": "122.1i",
+      "old_text": "One or more rad counters on a player cause a triggered ability to trigger at the beginning of that player\u2019s precombat main phase. See rule 727, \u201cRad Counters.\u201d",
+      "new_text": "One or more rad counters on a player cause a triggered ability to trigger at the beginning of that player\u2019s precombat main phase. See rule 728, \u201cRad Counters.\u201d"
     },
     {
       "rule": "205.3g",
@@ -44,6 +54,11 @@
       "new_text": "An ability word appears in italics at the beginning of some abilities. Ability words are similar to keywords in that they tie together cards that have similar functionality, but they have no special rules meaning and no individual entries in the Comprehensive Rules. The ability words are adamant, addendum, alliance, battalion, bloodrush, celebration, channel, chroma, cohort, constellation, converge, council\u2019s dilemma, coven, delirium, descend 4, descend 8, disappear, domain, eerie, eminence, enrage, fateful hour, fathomless descent, ferocious, flurry, formidable, grandeur, hellbent, heroic, imprint, infusion, inspired, join forces, kinship, landfall, lieutenant, magecraft, metalcraft, morbid, opus, pack tactics, paradox, parley, radiance, raid, rally, renew, repartee, revolt, secret council, spell mastery, strive, survival, sweep, tempting offer, threshold, undergrowth, valiant, vivid, void, and will of the council."
     },
     {
+      "rule": "502.2",
+      "old_text": "Second, if it\u2019s day and the previous turn\u2019s active player didn\u2019t cast any spells during that turn, it becomes night. If it\u2019s night and the previous turn\u2019s active player cast two or more spells during that turn, it becomes day. If it\u2019s neither day nor night, this check doesn\u2019t happen and it remains neither. This turn-based action doesn\u2019t use the stack. See rule 730, \u201cDay and Night.\u201d",
+      "new_text": "Second, if it\u2019s day and the previous turn\u2019s active player didn\u2019t cast any spells during that turn, it becomes night. If it\u2019s night and the previous turn\u2019s active player cast two or more spells during that turn, it becomes day. If it\u2019s neither day nor night, this check doesn\u2019t happen and it remains neither. This turn-based action doesn\u2019t use the stack. See rule 731, \u201cDay and Night.\u201d"
+    },
+    {
       "rule": "508.4a",
       "old_text": "If the effect that puts a creature onto the battlefield attacking specifies it\u2019s attacking a certain player, and that player is no longer in the game when the effect resolves, the creature is put onto the battlefield but is never considered an attacking creature. The same is true if the effect specifies a creature is put onto the battlefield attacking a planeswalker or battle and, when the effect resolves, that permanent is no longer on the battlefield, is no longer a planeswalker or battle, is a planeswalker that is no longer controlled by a defending player, or is a battle that is no longer protected by a defending player.",
       "new_text": "If a creature would be put onto the battlefield attacking a certain player, and that player is no longer in the game, the creature is put onto the battlefield but is never considered an attacking creature. The same is true if a creature would be put onto the battlefield attacking a planeswalker or battle and that permanent is no longer on the battlefield, is no longer a planeswalker or battle, is a planeswalker that is no longer controlled by a defending player, or is a battle that is no longer protected by a defending player."
@@ -54,14 +69,29 @@
       "new_text": "Some zone-change triggers look back in time. These are leaves-the-battlefield abilities, abilities that trigger when a player sacrifices a permanent, abilities that trigger when a card leaves a graveyard, and abilities that trigger when an object that all players can see is put into a hand or library."
     },
     {
+      "rule": "608.3d",
+      "old_text": "If the object that\u2019s resolving is a mutating creature spell, the object representing that spell merges with the permanent it is targeting (see rule 729, \u201cMerging with Permanents\u201d).",
+      "new_text": "If the object that\u2019s resolving is a mutating creature spell, the object representing that spell merges with the permanent it is targeting (see rule 730, \u201cMerging with Permanents\u201d)."
+    },
+    {
+      "rule": "613.2a",
+      "old_text": "Layer 1a: Copiable effects are applied. This includes copy effects (see rule 707, \u201cCopying Objects\u201d) and changes to an object\u2019s characteristics determined by merging an object with a permanent (see rule 729, \u201cMerging with Permanents\u201d). \u201cAs . . . enters\u201d and \u201cas . . . is turned face up\u201d abilities generate copiable effects if they set power and toughness, even if they also define other characteristics.",
+      "new_text": "Layer 1a: Copiable effects are applied. This includes copy effects (see rule 707, \u201cCopying Objects\u201d) and changes to an object\u2019s characteristics determined by merging an object with a permanent (see rule 730, \u201cMerging with Permanents\u201d). \u201cAs . . . enters\u201d and \u201cas . . . is turned face up\u201d abilities generate copiable effects if they set power and toughness, even if they also define other characteristics."
+    },
+    {
       "rule": "701.17d",
       "old_text": "If an ability checks information about a single milled card but more than one card was milled, that ability refers to each of the milled cards. If that ability asks for any information about the milled card, such as a characteristic or mana value, it gets multiple answers. If these answers are used to determine the value of a variable, the sum of the answers is used. If that ability performs any actions on \u201cthe\u201d card, it performs that action on each milled card. If that ability performs any actions on \u201ca\u201d card, the controller of the ability chooses which card is affected.",
       "new_text": "Some spells and abilities mill a single card and then ask for information about the milled card. If more than one card is milled due to replacement effects and the effect of a spell or ability asks for information about the milled card, such as a characteristic or mana value, it gets information from each milled card and will get multiple answers. If these answers are used to determine the value of a variable, the sum of the answers is used. If that effect grants a player permission to cast or play \u201cthat\u201d card, the permission applies to each of the milled cards. If that effect performs any actions on \u201cthe\u201d card, it performs that action on each milled card. If that effect performs any actions on \u201ca\u201d card, the controller of the spell or ability chooses which card is affected."
     },
     {
-      "rule": "701.27g",
-      "old_text": "Some spells and abilities refer to a \u201ctransformed permanent.\u201d This phrase refers to a double-faced permanent on the battlefield with its back face up. A permanent with its front face up is never considered a transformed permanent, even if it had its back face up previously. Similarly, an object represented by more than one card, such as a melded or merged permanent, is never considered a transformed permanent, even if it has components that are back face up. See rules 701.42, \u201cMeld,\u201d and 729, \u201cMerging with Permanents.\u201d",
-      "new_text": "Some spells and abilities refer to a \u201ctransformed permanent.\u201d This phrase refers to a double-faced permanent on the battlefield with its back face up. A permanent with its front face up is never considered a transformed permanent, even if it had its back face up previously. Similarly, an object represented by more than one card, such as a melded or merged permanent, is never considered a transformed permanent, even if it has components that are back face up. See rules 701.42, \u201cMeld,\u201d and 730, \u201cMerging with Permanents.\u201d"
+      "rule": "702.140c",
+      "old_text": "As a mutating creature spell resolves, if its target is legal, it doesn\u2019t enter the battlefield. Rather, it merges with the target creature and becomes one object represented by more than one card or token (see rule 729, \u201cMerging with Permanents\u201d). The spell\u2019s controller chooses whether the spell is put on top of the creature or on the bottom. The resulting permanent is a mutated permanent.",
+      "new_text": "As a mutating creature spell resolves, if its target is legal, it doesn\u2019t enter the battlefield. Rather, it merges with the target creature and becomes one object represented by more than one card or token (see rule 730, \u201cMerging with Permanents\u201d). The spell\u2019s controller chooses whether the spell is put on top of the creature or on the bottom. The resulting permanent is a mutated permanent."
+    },
+    {
+      "rule": "702.145b",
+      "old_text": "Daybound is found on the front faces of some double-faced cards and represents three static abilities. \u201cDaybound\u201d means \u201cIf it is night and this permanent is represented by a double-faced card, it enters transformed,\u201d \u201cAs it becomes night, if this permanent is front face up, transform it,\u201d and \u201cThis permanent can\u2019t transform except due to its daybound ability.\u201d See rule 730, \u201cDay and Night.\u201d",
+      "new_text": "Daybound is found on the front faces of some double-faced cards and represents three static abilities. \u201cDaybound\u201d means \u201cIf it is night and this permanent is represented by a double-faced card, it enters transformed,\u201d \u201cAs it becomes night, if this permanent is front face up, transform it,\u201d and \u201cThis permanent can\u2019t transform except due to its daybound ability.\u201d See rule 731, \u201cDay and Night.\u201d"
     },
     {
       "rule": "702.155b",
@@ -82,28 +112,18 @@
       "rule": "714.3a",
       "old_text": "As a Saga without the read ahead ability enters the battlefield, its controller puts a lore counter on it. As a Saga with the read ahead ability enters the battlefield, its controller chooses a number from one to that Saga\u2019s final chapter number. That Saga enters the battlefield with the chosen number of lore counters on it. (See rule 702.155, \u201cRead Ahead.\u201d)",
       "new_text": "Each Saga without read ahead has the intrinsic ability \u201cThis Saga enters with a lore counter on it.\u201d This ability creates a replacement effect (see rule 614.1c)."
+    },
+    {
+      "rule": "801.17",
+      "old_text": "Effects that restart the game (see rule 726) are exempt from the limited range of influence option. All players in the game will be involved in the new game.",
+      "new_text": "Effects that restart the game (see rule 727) are exempt from the limited range of influence option. All players in the game will be involved in the new game."
     }
   ],
   "reference_renumbered": [
     {
-      "rule": "104.6",
-      "old_text": "One card (Karn Liberated) restarts the game. All players still in the game when it restarts then immediately begin a new game. See rule 726, \u201cRestarting the Game.\u201d",
-      "new_text": "One card (Karn Liberated) restarts the game. All players still in the game when it restarts then immediately begin a new game. See rule 727, \u201cRestarting the Game.\u201d"
-    },
-    {
       "rule": "121.8",
       "old_text": "If a spell or ability causes a card to be drawn while another spell is being cast, the drawn card is kept face down until that spell becomes cast (see rule 601.2i) or until the casting process is reversed (see rule 732, \u201cHandling Illegal Actions\u201d). The same is true with relation to another ability being activated. If an effect allows or instructs a player to reveal the card as it\u2019s being drawn, it\u2019s revealed after the spell becomes cast or the ability becomes activated. While face down, the drawn card is considered to have no characteristics and can\u2019t be used to pay any part of the cost of the spell or ability that would require the card to have specific characteristics.",
       "new_text": "If a spell or ability causes a card to be drawn while another spell is being cast, the drawn card is kept face down until that spell becomes cast (see rule 601.2i) or until the casting process is reversed (see rule 733, \u201cHandling Illegal Actions\u201d). The same is true with relation to another ability being activated. If an effect allows or instructs a player to reveal the card as it\u2019s being drawn, it\u2019s revealed after the spell becomes cast or the ability becomes activated. While face down, the drawn card is considered to have no characteristics and can\u2019t be used to pay any part of the cost of the spell or ability that would require the card to have specific characteristics."
-    },
-    {
-      "rule": "122.1i",
-      "old_text": "One or more rad counters on a player cause a triggered ability to trigger at the beginning of that player\u2019s precombat main phase. See rule 727, \u201cRad Counters.\u201d",
-      "new_text": "One or more rad counters on a player cause a triggered ability to trigger at the beginning of that player\u2019s precombat main phase. See rule 728, \u201cRad Counters.\u201d"
-    },
-    {
-      "rule": "502.2",
-      "old_text": "Second, if it\u2019s day and the previous turn\u2019s active player didn\u2019t cast any spells during that turn, it becomes night. If it\u2019s night and the previous turn\u2019s active player cast two or more spells during that turn, it becomes day. If it\u2019s neither day nor night, this check doesn\u2019t happen and it remains neither. This turn-based action doesn\u2019t use the stack. See rule 730, \u201cDay and Night.\u201d",
-      "new_text": "Second, if it\u2019s day and the previous turn\u2019s active player didn\u2019t cast any spells during that turn, it becomes night. If it\u2019s night and the previous turn\u2019s active player cast two or more spells during that turn, it becomes day. If it\u2019s neither day nor night, this check doesn\u2019t happen and it remains neither. This turn-based action doesn\u2019t use the stack. See rule 731, \u201cDay and Night.\u201d"
     },
     {
       "rule": "508.1",
@@ -141,34 +161,14 @@
       "new_text": "To activate an ability is to put it onto the stack and pay its costs, so that it will eventually resolve and have its effect. Only an object\u2019s controller (or its owner, if it doesn\u2019t have a controller) can activate its activated ability unless the object specifically says otherwise. Activating an ability follows the steps listed below, in order. If, at any point during the activation of an ability, a player is unable to comply with any of those steps, the activation is illegal; the game returns to the moment before that ability started to be activated (see rule 733, \u201cHandling Illegal Actions\u201d). Announcements and payments can\u2019t be altered after they\u2019ve been made."
     },
     {
-      "rule": "608.3d",
-      "old_text": "If the object that\u2019s resolving is a mutating creature spell, the object representing that spell merges with the permanent it is targeting (see rule 729, \u201cMerging with Permanents\u201d).",
-      "new_text": "If the object that\u2019s resolving is a mutating creature spell, the object representing that spell merges with the permanent it is targeting (see rule 730, \u201cMerging with Permanents\u201d)."
-    },
-    {
-      "rule": "613.2a",
-      "old_text": "Layer 1a: Copiable effects are applied. This includes copy effects (see rule 707, \u201cCopying Objects\u201d) and changes to an object\u2019s characteristics determined by merging an object with a permanent (see rule 729, \u201cMerging with Permanents\u201d). \u201cAs . . . enters\u201d and \u201cas . . . is turned face up\u201d abilities generate copiable effects if they set power and toughness, even if they also define other characteristics.",
-      "new_text": "Layer 1a: Copiable effects are applied. This includes copy effects (see rule 707, \u201cCopying Objects\u201d) and changes to an object\u2019s characteristics determined by merging an object with a permanent (see rule 730, \u201cMerging with Permanents\u201d). \u201cAs . . . enters\u201d and \u201cas . . . is turned face up\u201d abilities generate copiable effects if they set power and toughness, even if they also define other characteristics."
-    },
-    {
       "rule": "701.9c",
       "old_text": "If a card is discarded, but an effect causes it to be put into a hidden zone instead of into its owner\u2019s graveyard without being revealed, all values of that card\u2019s characteristics are considered to be undefined. If a card is discarded this way to pay a cost that specifies a characteristic about the discarded card, that cost payment is illegal; the game returns to the moment before the cost was paid (see rule 732, \u201cHandling Illegal Actions\u201d).",
       "new_text": "If a card is discarded, but an effect causes it to be put into a hidden zone instead of into its owner\u2019s graveyard without being revealed, all values of that card\u2019s characteristics are considered to be undefined. If a card is discarded this way to pay a cost that specifies a characteristic about the discarded card, that cost payment is illegal; the game returns to the moment before the cost was paid (see rule 733, \u201cHandling Illegal Actions\u201d)."
     },
     {
-      "rule": "702.140c",
-      "old_text": "As a mutating creature spell resolves, if its target is legal, it doesn\u2019t enter the battlefield. Rather, it merges with the target creature and becomes one object represented by more than one card or token (see rule 729, \u201cMerging with Permanents\u201d). The spell\u2019s controller chooses whether the spell is put on top of the creature or on the bottom. The resulting permanent is a mutated permanent.",
-      "new_text": "As a mutating creature spell resolves, if its target is legal, it doesn\u2019t enter the battlefield. Rather, it merges with the target creature and becomes one object represented by more than one card or token (see rule 730, \u201cMerging with Permanents\u201d). The spell\u2019s controller chooses whether the spell is put on top of the creature or on the bottom. The resulting permanent is a mutated permanent."
-    },
-    {
-      "rule": "702.145b",
-      "old_text": "Daybound is found on the front faces of some double-faced cards and represents three static abilities. \u201cDaybound\u201d means \u201cIf it is night and this permanent is represented by a double-faced card, it enters transformed,\u201d \u201cAs it becomes night, if this permanent is front face up, transform it,\u201d and \u201cThis permanent can\u2019t transform except due to its daybound ability.\u201d See rule 730, \u201cDay and Night.\u201d",
-      "new_text": "Daybound is found on the front faces of some double-faced cards and represents three static abilities. \u201cDaybound\u201d means \u201cIf it is night and this permanent is represented by a double-faced card, it enters transformed,\u201d \u201cAs it becomes night, if this permanent is front face up, transform it,\u201d and \u201cThis permanent can\u2019t transform except due to its daybound ability.\u201d See rule 731, \u201cDay and Night.\u201d"
-    },
-    {
-      "rule": "801.17",
-      "old_text": "Effects that restart the game (see rule 726) are exempt from the limited range of influence option. All players in the game will be involved in the new game.",
-      "new_text": "Effects that restart the game (see rule 727) are exempt from the limited range of influence option. All players in the game will be involved in the new game."
+      "rule": "701.27g",
+      "old_text": "Some spells and abilities refer to a \u201ctransformed permanent.\u201d This phrase refers to a double-faced permanent on the battlefield with its back face up. A permanent with its front face up is never considered a transformed permanent, even if it had its back face up previously. Similarly, an object represented by more than one card, such as a melded or merged permanent, is never considered a transformed permanent, even if it has components that are back face up. See rules 701.42, \u201cMeld,\u201d and 729, \u201cMerging with Permanents.\u201d",
+      "new_text": "Some spells and abilities refer to a \u201ctransformed permanent.\u201d This phrase refers to a double-faced permanent on the battlefield with its back face up. A permanent with its front face up is never considered a transformed permanent, even if it had its back face up previously. Similarly, an object represented by more than one card, such as a melded or merged permanent, is never considered a transformed permanent, even if it has components that are back face up. See rules 701.42, \u201cMeld,\u201d and 730, \u201cMerging with Permanents.\u201d"
     }
   ],
   "added": [
@@ -243,34 +243,9 @@
     {
       "rule": "722.5",
       "text": "If an effect instructs a player to choose a card name and the player wants to choose a preparation card\u2019s alternative name, the player may do so."
-    },
-    {
-      "rule": "726.1",
-      "text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
-    },
-    {
-      "rule": "726.3",
-      "text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
-    },
-    {
-      "rule": "726.4",
-      "text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
     }
   ],
-  "removed": [
-    {
-      "rule": "725.1",
-      "text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
-    },
-    {
-      "rule": "725.3",
-      "text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
-    },
-    {
-      "rule": "725.4",
-      "text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
-    }
-  ],
+  "removed": [],
   "renumbered": [
     {
       "old_rule": "714.3b",
@@ -511,11 +486,32 @@
       "new_text": "If the result of a continuous effect generated by a static ability is determined based on who is currently the monarch, but there is no monarch in the game as that effect begins to apply, that effect does nothing until a player becomes the monarch. See rule 613, \u201cContinuous Effects.\u201d"
     },
     {
+      "old_rule": "725.1",
+      "new_rule": "726.1",
+      "similarity": 1.0,
+      "old_text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative.",
+      "new_text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
+    },
+    {
       "old_rule": "725.2",
       "new_rule": "726.2",
       "similarity": 1.0,
       "old_text": "There are three inherent triggered abilities associated with having the initiative. These triggered abilities have no source and are controlled by the player who had the initiative at the time the abilities triggered. This is an exception to rule 113.8. The full text of these abilities are \u201cAt the beginning of the upkeep of the player who has the initiative, that player ventures into Undercity,\u201d \u201cWhenever one or more creatures a player controls deal combat damage to the player who has the initiative, the controller of those creatures takes the initiative,\u201d and \u201cWhenever a player takes the initiative, that player ventures into Undercity.\u201d See rule 701.49, \u201cVenture into the Dungeon.\u201d",
       "new_text": "There are three inherent triggered abilities associated with having the initiative. These triggered abilities have no source and are controlled by the player who had the initiative at the time the abilities triggered. This is an exception to rule 113.8. The full text of these abilities are \u201cAt the beginning of the upkeep of the player who has the initiative, that player ventures into Undercity,\u201d \u201cWhenever one or more creatures a player controls deal combat damage to the player who has the initiative, the controller of those creatures takes the initiative,\u201d and \u201cWhenever a player takes the initiative, that player ventures into Undercity.\u201d See rule 701.49, \u201cVenture into the Dungeon.\u201d"
+    },
+    {
+      "old_rule": "725.3",
+      "new_rule": "726.3",
+      "similarity": 1.0,
+      "old_text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it.",
+      "new_text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
+    },
+    {
+      "old_rule": "725.4",
+      "new_rule": "726.4",
+      "similarity": 1.0,
+      "old_text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative.",
+      "new_text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
     },
     {
       "old_rule": "725.5",
@@ -1453,7 +1449,7 @@
     },
     {
       "rule": "104.6",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "One card (Karn Liberated) restarts the game. All players still in the game when it restarts then immediately begin a new game. See rule 726, \u201cRestarting the Game.\u201d",
       "new_text": "One card (Karn Liberated) restarts the game. All players still in the game when it restarts then immediately begin a new game. See rule 727, \u201cRestarting the Game.\u201d"
     },
@@ -3322,7 +3318,7 @@
     },
     {
       "rule": "122.1i",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "One or more rad counters on a player cause a triggered ability to trigger at the beginning of that player\u2019s precombat main phase. See rule 727, \u201cRad Counters.\u201d",
       "new_text": "One or more rad counters on a player cause a triggered ability to trigger at the beginning of that player\u2019s precombat main phase. See rule 728, \u201cRad Counters.\u201d"
     },
@@ -5397,7 +5393,7 @@
     },
     {
       "rule": "502.2",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "Second, if it\u2019s day and the previous turn\u2019s active player didn\u2019t cast any spells during that turn, it becomes night. If it\u2019s night and the previous turn\u2019s active player cast two or more spells during that turn, it becomes day. If it\u2019s neither day nor night, this check doesn\u2019t happen and it remains neither. This turn-based action doesn\u2019t use the stack. See rule 730, \u201cDay and Night.\u201d",
       "new_text": "Second, if it\u2019s day and the previous turn\u2019s active player didn\u2019t cast any spells during that turn, it becomes night. If it\u2019s night and the previous turn\u2019s active player cast two or more spells during that turn, it becomes day. If it\u2019s neither day nor night, this check doesn\u2019t happen and it remains neither. This turn-based action doesn\u2019t use the stack. See rule 731, \u201cDay and Night.\u201d"
     },
@@ -6882,7 +6878,7 @@
     },
     {
       "rule": "608.3d",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "If the object that\u2019s resolving is a mutating creature spell, the object representing that spell merges with the permanent it is targeting (see rule 729, \u201cMerging with Permanents\u201d).",
       "new_text": "If the object that\u2019s resolving is a mutating creature spell, the object representing that spell merges with the permanent it is targeting (see rule 730, \u201cMerging with Permanents\u201d)."
     },
@@ -7193,7 +7189,7 @@
     },
     {
       "rule": "613.2a",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "Layer 1a: Copiable effects are applied. This includes copy effects (see rule 707, \u201cCopying Objects\u201d) and changes to an object\u2019s characteristics determined by merging an object with a permanent (see rule 729, \u201cMerging with Permanents\u201d). \u201cAs . . . enters\u201d and \u201cas . . . is turned face up\u201d abilities generate copiable effects if they set power and toughness, even if they also define other characteristics.",
       "new_text": "Layer 1a: Copiable effects are applied. This includes copy effects (see rule 707, \u201cCopying Objects\u201d) and changes to an object\u2019s characteristics determined by merging an object with a permanent (see rule 730, \u201cMerging with Permanents\u201d). \u201cAs . . . enters\u201d and \u201cas . . . is turned face up\u201d abilities generate copiable effects if they set power and toughness, even if they also define other characteristics."
     },
@@ -8461,7 +8457,7 @@
     },
     {
       "rule": "701.27g",
-      "status": "modified",
+      "status": "reference_renumbered",
       "old_text": "Some spells and abilities refer to a \u201ctransformed permanent.\u201d This phrase refers to a double-faced permanent on the battlefield with its back face up. A permanent with its front face up is never considered a transformed permanent, even if it had its back face up previously. Similarly, an object represented by more than one card, such as a melded or merged permanent, is never considered a transformed permanent, even if it has components that are back face up. See rules 701.42, \u201cMeld,\u201d and 729, \u201cMerging with Permanents.\u201d",
       "new_text": "Some spells and abilities refer to a \u201ctransformed permanent.\u201d This phrase refers to a double-faced permanent on the battlefield with its back face up. A permanent with its front face up is never considered a transformed permanent, even if it had its back face up previously. Similarly, an object represented by more than one card, such as a melded or merged permanent, is never considered a transformed permanent, even if it has components that are back face up. See rules 701.42, \u201cMeld,\u201d and 730, \u201cMerging with Permanents.\u201d"
     },
@@ -12102,7 +12098,7 @@
     },
     {
       "rule": "702.140c",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "As a mutating creature spell resolves, if its target is legal, it doesn\u2019t enter the battlefield. Rather, it merges with the target creature and becomes one object represented by more than one card or token (see rule 729, \u201cMerging with Permanents\u201d). The spell\u2019s controller chooses whether the spell is put on top of the creature or on the bottom. The resulting permanent is a mutated permanent.",
       "new_text": "As a mutating creature spell resolves, if its target is legal, it doesn\u2019t enter the battlefield. Rather, it merges with the target creature and becomes one object represented by more than one card or token (see rule 730, \u201cMerging with Permanents\u201d). The spell\u2019s controller chooses whether the spell is put on top of the creature or on the bottom. The resulting permanent is a mutated permanent."
     },
@@ -12203,7 +12199,7 @@
     },
     {
       "rule": "702.145b",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "Daybound is found on the front faces of some double-faced cards and represents three static abilities. \u201cDaybound\u201d means \u201cIf it is night and this permanent is represented by a double-faced card, it enters transformed,\u201d \u201cAs it becomes night, if this permanent is front face up, transform it,\u201d and \u201cThis permanent can\u2019t transform except due to its daybound ability.\u201d See rule 730, \u201cDay and Night.\u201d",
       "new_text": "Daybound is found on the front faces of some double-faced cards and represents three static abilities. \u201cDaybound\u201d means \u201cIf it is night and this permanent is represented by a double-faced card, it enters transformed,\u201d \u201cAs it becomes night, if this permanent is front face up, transform it,\u201d and \u201cThis permanent can\u2019t transform except due to its daybound ability.\u201d See rule 731, \u201cDay and Night.\u201d"
     },
@@ -14912,11 +14908,6 @@
       "similarity": 1.0
     },
     {
-      "rule": "725.1",
-      "status": "removed",
-      "text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
-    },
-    {
       "rule": "725.2",
       "status": "renumbered",
       "old_rule": "724.2",
@@ -14933,22 +14924,12 @@
       "similarity": 1.0
     },
     {
-      "rule": "725.3",
-      "status": "removed",
-      "text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
-    },
-    {
       "rule": "725.4",
       "status": "renumbered",
       "old_rule": "724.4",
       "old_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch.",
       "new_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch.",
       "similarity": 1.0
-    },
-    {
-      "rule": "725.4",
-      "status": "removed",
-      "text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
     },
     {
       "rule": "725.5",
@@ -14960,8 +14941,11 @@
     },
     {
       "rule": "726.1",
-      "status": "added",
-      "text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
+      "status": "renumbered",
+      "old_rule": "725.1",
+      "old_text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative.",
+      "new_text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative.",
+      "similarity": 1.0
     },
     {
       "rule": "726.2",
@@ -14973,13 +14957,19 @@
     },
     {
       "rule": "726.3",
-      "status": "added",
-      "text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
+      "status": "renumbered",
+      "old_rule": "725.3",
+      "old_text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it.",
+      "new_text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it.",
+      "similarity": 1.0
     },
     {
       "rule": "726.4",
-      "status": "added",
-      "text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
+      "status": "renumbered",
+      "old_rule": "725.4",
+      "old_text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative.",
+      "new_text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative.",
+      "similarity": 1.0
     },
     {
       "rule": "726.5",
@@ -15047,7 +15037,7 @@
     },
     {
       "rule": "727.6",
-      "status": "renumbered",
+      "status": "renumbered_and_modified",
       "old_rule": "726.6",
       "old_text": "If a Magic subgame (see rule 728) is restarted, the main game is unaffected. Main-game effects that refer to the winner or loser of the subgame now refer to the winner or loser of the restarted subgame.",
       "new_text": "If a Magic subgame (see rule 729) is restarted, the main game is unaffected. Main-game effects that refer to the winner or loser of the subgame now refer to the winner or loser of the restarted subgame.",
@@ -15746,7 +15736,7 @@
     },
     {
       "rule": "801.17",
-      "status": "reference_renumbered",
+      "status": "modified",
       "old_text": "Effects that restart the game (see rule 726) are exempt from the limited range of influence option. All players in the game will be involved in the new game.",
       "new_text": "Effects that restart the game (see rule 727) are exempt from the limited range of influence option. All players in the game will be involved in the new game."
     },
