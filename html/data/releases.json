@@ -1,0 +1,23 @@
+[
+  {
+    "source_file": "MagicCompRules 20260116.txt",
+    "file_date": "20260116",
+    "effective_date": "January 16, 2026",
+    "rule_count": 3114,
+    "glossary_count": 725
+  },
+  {
+    "source_file": "MagicCompRules 20260227.txt",
+    "file_date": "20260227",
+    "effective_date": "February 27, 2026",
+    "rule_count": 3120,
+    "glossary_count": 726
+  },
+  {
+    "source_file": "MagicCompRules 20260417.txt",
+    "file_date": "20260417",
+    "effective_date": "April 17, 2026",
+    "rule_count": 3138,
+    "glossary_count": 730
+  }
+]

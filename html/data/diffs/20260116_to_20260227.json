@@ -1,0 +1,89 @@
+{
+  "old_file": "MagicCompRules 20260116.txt",
+  "new_file": "MagicCompRules 20260227.txt",
+  "old_effective_date": "January 16, 2026",
+  "new_effective_date": "February 27, 2026",
+  "summary": {
+    "unchanged": 3105,
+    "modified": 9,
+    "added": 6,
+    "removed": 0,
+    "renumbered": 0,
+    "renumbered_and_modified": 0
+  },
+  "modified": [
+    {
+      "rule": "205.3g",
+      "old_text": "Artifacts have their own unique set of subtypes; these subtypes are called artifact types. The artifact types are Attraction (see rule 717), Blood, Bobblehead, Clue, Contraption, Equipment (see rule 301.5), Food, Fortification (see rule 301.6), Gold, Incubator, Infinity, Junk, Lander, Map, Powerstone, Spacecraft, Stone, Treasure, and Vehicle (see rule 301.7).",
+      "new_text": "Artifacts have their own unique set of subtypes; these subtypes are called artifact types. The artifact types are Attraction (see rule 717), Blood, Bobblehead, Clue, Contraption, Equipment (see rule 301.5), Food, Fortification (see rule 301.6), Gold, Incubator, Infinity, Junk, Lander, Map, Mutagen, Powerstone, Spacecraft, Stone, Treasure, and Vehicle (see rule 301.7)."
+    },
+    {
+      "rule": "205.3m",
+      "old_text": "Creatures and kindreds share their lists of subtypes; these subtypes are called creature types. One creature type is two words long: Time Lord. All other creature types are one word long: Advisor, Aetherborn, Alien, Ally, Angel, Antelope, Ape, Archer, Archon, Armadillo, Army, Artificer, Assassin, Assembly-Worker, Astartes, Atog, Aurochs, Avatar, Azra, Badger, Balloon, Barbarian, Bard, Basilisk, Bat, Bear, Beast, Beaver, Beeble, Beholder, Berserker, Bird, Bison, Blinkmoth, Boar, Bringer, Brushwagg, Camarid, Camel, Capybara, Caribou, Carrier, Cat, Centaur, Child, Chimera, Citizen, Cleric, Clown, Cockatrice, Construct, Coward, Coyote, Crab, Crocodile, C\u2019tan, Custodes, Cyberman, Cyclops, Dalek, Dauthi, Demigod, Demon, Deserter, Detective, Devil, Dinosaur, Djinn, Doctor, Dog, Dragon, Drake, Dreadnought, Drix, Drone, Druid, Dryad, Dwarf, Echidna, Efreet, Egg, Elder, Eldrazi, Elemental, Elephant, Elf, Elk, Employee, Eye, Faerie, Ferret, Fish, Flagbearer, Fox, Fractal, Frog, Fungus, Gamer, Gargoyle, Germ, Giant, Gith, Glimmer, Gnoll, Gnome, Goat, Goblin, God, Golem, Gorgon, Graveborn, Gremlin, Griffin, Guest, Hag, Halfling, Hamster, Harpy, Hedgehog, Hellion, Hero, Hippo, Hippogriff, Homarid, Homunculus, Horror, Horse, Human, Hydra, Hyena, Illusion, Imp, Incarnation, Inkling, Inquisitor, Insect, Jackal, Jellyfish, Juggernaut, Kangaroo, Kavu, Kirin, Kithkin, Knight, Kobold, Kor, Kraken, Llama, Lamia, Lammasu, Leech, Lemur, Leviathan, Lhurgoyf, Licid, Lizard, Lobster, Manticore, Masticore, Mercenary, Merfolk, Metathran, Minion, Minotaur, Mite, Mole, Monger, Mongoose, Monk, Monkey, Moogle, Moonfolk, Mount, Mouse, Mutant, Myr, Mystic, Nautilus, Necron, Nephilim, Nightmare, Nightstalker, Ninja, Noble, Noggle, Nomad, Nymph, Octopus, Ogre, Ooze, Orb, Orc, Orgg, Otter, Ouphe, Ox, Oyster, Pangolin, Peasant, Pegasus, Pentavite, Performer, Pest, Phelddagrif, Phoenix, Phyrexian, Pilot, Pincher, Pirate, Plant, Platypus, Porcupine, Possum, Praetor, Primarch, Prism, Processor, Qu, Rabbit, Raccoon, Ranger, Rat, Rebel, Reflection, Rhino, Rigger, Robot, Rogue, Sable, Salamander, Samurai, Sand, Saproling, Satyr, Scarecrow, Scientist, Scion, Scorpion, Scout, Sculpture, Seal, Serf, Serpent, Servo, Shade, Shaman, Shapeshifter, Shark, Sheep, Siren, Skeleton, Skunk, Slith, Sliver, Sloth, Slug, Snail, Snake, Soldier, Soltari, Sorcerer, Spawn, Specter, Spellshaper, Sphinx, Spider, Spike, Spirit, Splinter, Sponge, Squid, Squirrel, Starfish, Surrakar, Survivor, Symbiote, Synth, Tentacle, Tetravite, Thalakos, Thopter, Thrull, Tiefling, Toy, Treefolk, Trilobite, Triskelavite, Troll, Turtle, Tyranid, Unicorn, Vampire, Varmint, Vedalken, Villain, Volver, Wall, Walrus, Warlock, Warrior, Weasel, Weird, Werewolf, Whale, Wizard, Wolf, Wolverine, Wombat, Worm, Wraith, Wurm, Yeti, Zombie, and Zubera.",
+      "new_text": "Creatures and kindreds share their lists of subtypes; these subtypes are called creature types. One creature type is two words long: Time Lord. All other creature types are one word long: Advisor, Aetherborn, Alien, Ally, Angel, Antelope, Ape, Archer, Archon, Armadillo, Army, Artificer, Assassin, Assembly-Worker, Astartes, Atog, Aurochs, Avatar, Azra, Badger, Balloon, Barbarian, Bard, Basilisk, Bat, Bear, Beast, Beaver, Beeble, Beholder, Berserker, Bird, Bison, Blinkmoth, Boar, Bringer, Brushwagg, Camarid, Camel, Capybara, Caribou, Carrier, Cat, Centaur, Child, Chimera, Citizen, Cleric, Clown, Cockatrice, Construct, Coward, Coyote, Crab, Crocodile, C\u2019tan, Custodes, Cyberman, Cyclops, Dalek, Dauthi, Demigod, Demon, Deserter, Detective, Devil, Dinosaur, Djinn, Doctor, Dog, Dragon, Drake, Dreadnought, Drix, Drone, Druid, Dryad, Dwarf, Echidna, Efreet, Egg, Elder, Eldrazi, Elemental, Elephant, Elf, Elk, Employee, Eye, Faerie, Ferret, Fish, Flagbearer, Fox, Fractal, Frog, Fungus, Gamer, Gargoyle, Germ, Giant, Gith, Glimmer, Gnoll, Gnome, Goat, Goblin, God, Golem, Gorgon, Graveborn, Gremlin, Griffin, Guest, Hag, Halfling, Hamster, Harpy, Hedgehog, Hellion, Hero, Hippo, Hippogriff, Homarid, Homunculus, Horror, Horse, Human, Hydra, Hyena, Illusion, Imp, Incarnation, Inkling, Inquisitor, Insect, Jackal, Jellyfish, Juggernaut, Kangaroo, Kavu, Kirin, Kithkin, Knight, Kobold, Kor, Kraken, Llama, Lamia, Lammasu, Leech, Lemur, Leviathan, Lhurgoyf, Licid, Lizard, Lobster, Manticore, Masticore, Mercenary, Merfolk, Metathran, Minion, Minotaur, Mite, Mole, Monger, Mongoose, Monk, Monkey, Moogle, Moonfolk, Mount, Mouse, Mutant, Myr, Mystic, Nautilus, Necron, Nephilim, Nightmare, Nightstalker, Ninja, Noble, Noggle, Nomad, Nymph, Octopus, Ogre, Ooze, Orb, Orc, Orgg, Otter, Ouphe, Ox, Oyster, Pangolin, Peasant, Pegasus, Pentavite, Performer, Pest, Phelddagrif, Phoenix, Phyrexian, Pilot, Pincher, Pirate, Plant, Platypus, Porcupine, Possum, Praetor, Primarch, Prism, Processor, Qu, Rabbit, Raccoon, Ranger, Rat, Rebel, Reflection, Rhino, Rigger, Robot, Rogue, Sable, Salamander, Samurai, Sand, Saproling, Satyr, Scarecrow, Scientist, Scion, Scorpion, Scout, Sculpture, Seal, Serf, Serpent, Servo, Shade, Shaman, Shapeshifter, Shark, Sheep, Siren, Skeleton, Skunk, Slith, Sliver, Sloth, Slug, Snail, Snake, Soldier, Soltari, Sorcerer, Spawn, Specter, Spellshaper, Sphinx, Spider, Spike, Spirit, Splinter, Sponge, Squid, Squirrel, Starfish, Surrakar, Survivor, Symbiote, Synth, Tentacle, Tetravite, Thalakos, Thopter, Thrull, Tiefling, Toy, Treefolk, Trilobite, Triskelavite, Troll, Turtle, Tyranid, Unicorn, Utrom, Vampire, Varmint, Vedalken, Villain, Volver, Wall, Walrus, Warlock, Warrior, Weasel, Weird, Werewolf, Whale, Wizard, Wolf, Wolverine, Wombat, Worm, Wraith, Wurm, Yeti, Zombie, and Zubera."
+    },
+    {
+      "rule": "207.2c",
+      "old_text": "An ability word appears in italics at the beginning of some abilities. Ability words are similar to keywords in that they tie together cards that have similar functionality, but they have no special rules meaning and no individual entries in the Comprehensive Rules. The ability words are adamant, addendum, alliance, battalion, bloodrush, celebration, channel, chroma, cohort, constellation, converge, council\u2019s dilemma, coven, delirium, descend 4, descend 8, domain, eerie, eminence, enrage, fateful hour, fathomless descent, ferocious, flurry, formidable, grandeur, hellbent, heroic, imprint, inspired, join forces, kinship, landfall, lieutenant, magecraft, metalcraft, morbid, pack tactics, paradox, parley, radiance, raid, rally, renew, revolt, secret council, spell mastery, strive, survival, sweep, tempting offer, threshold, undergrowth, valiant, vivid, void, and will of the council.",
+      "new_text": "An ability word appears in italics at the beginning of some abilities. Ability words are similar to keywords in that they tie together cards that have similar functionality, but they have no special rules meaning and no individual entries in the Comprehensive Rules. The ability words are adamant, addendum, alliance, battalion, bloodrush, celebration, channel, chroma, cohort, constellation, converge, council\u2019s dilemma, coven, delirium, descend 4, descend 8, disappear, domain, eerie, eminence, enrage, fateful hour, fathomless descent, ferocious, flurry, formidable, grandeur, hellbent, heroic, imprint, inspired, join forces, kinship, landfall, lieutenant, magecraft, metalcraft, morbid, pack tactics, paradox, parley, radiance, raid, rally, renew, revolt, secret council, spell mastery, strive, survival, sweep, tempting offer, threshold, undergrowth, valiant, vivid, void, and will of the council."
+    },
+    {
+      "rule": "506.3d",
+      "old_text": "If an effect would put a creature onto the battlefield blocking but the creature it would block isn\u2019t attacking the entering creature\u2019s controller, a planeswalker that player controls, or a battle that player protects, that creature does enter the battlefield, but it\u2019s never considered to be a blocking creature.",
+      "new_text": "If an effect puts a creature onto the battlefield attacking during the declare blockers step, combat damage step, or end of combat step, that creature enters the battlefield unblocked. See rule 508.4d."
+    },
+    {
+      "rule": "506.3e",
+      "old_text": "If an effect would put a creature that\u2019s also a battle onto the battlefield attacking or blocking, that permanent enters the battlefield but it\u2019s never considered to be an attacking or blocking creature.",
+      "new_text": "If an effect would put a creature onto the battlefield blocking but the creature it would block isn\u2019t attacking the entering creature\u2019s controller, a planeswalker that player controls, or a battle that player protects, that creature does enter the battlefield, but it\u2019s never considered to be a blocking creature."
+    },
+    {
+      "rule": "506.3f",
+      "old_text": "If a resolving spell or ability would cause a battle to become an attacking or blocking creature, that part of the effect does nothing.",
+      "new_text": "If an effect would put a creature that\u2019s also a battle onto the battlefield attacking or blocking, that permanent enters the battlefield but it\u2019s never considered to be an attacking or blocking creature."
+    },
+    {
+      "rule": "508.4",
+      "old_text": "If a creature is put onto the battlefield attacking, its controller chooses which defending player, planeswalker a defending player controls, or battle a defending player protects it\u2019s attacking as it enters the battlefield (unless the effect that put it onto the battlefield specifies what it\u2019s attacking). Similarly, if an effect states that a creature is attacking, its controller chooses which defending player, planeswalker a defending player controls, or battle a defending player protects it\u2019s attacking (unless the effect has already specified). Such creatures are \u201cattacking\u201d but, for the purposes of trigger events and effects, they never \u201cattacked.\u201d",
+      "new_text": "If a creature is put onto the battlefield attacking, its controller chooses which defending player, planeswalker a defending player controls, or battle a defending player protects it\u2019s attacking as it enters the battlefield (unless the effect that put it onto the battlefield specifies what it\u2019s attacking). Similarly, if an effect states that a creature is attacking, its controller chooses which defending player, planeswalker a defending player controls, or battle a defending player protects it\u2019s attacking (unless the effect has already specified). Such creatures are \u201cattacking\u201d but, for the purposes of trigger events and effects, they never \u201cattacked.\u201d They remain attacking creatures until they\u2019re removed from combat or the combat phase ends, whichever comes first."
+    },
+    {
+      "rule": "702.124i",
+      "old_text": "\u201cPartner\u2014[text]\u201d means \u201cYou may designate two legendary cards as your commander rather than one if each of them has the same \u2018partner\u2014[text]\u2019 ability.\u201d The \u201cpartner\u2014[text]\u201d abilities are \u201cpartner\u2014Father & son,\u201d \u201cpartner\u2014Friends forever,\u201d and \u201cpartner\u2014Survivors.\u201d",
+      "new_text": "\u201cPartner\u2014[text]\u201d means \u201cYou may designate two legendary cards as your commander rather than one if each of them has the same \u2018partner\u2014[text]\u2019 ability.\u201d The \u201cpartner\u2014[text]\u201d abilities are \u201cpartner\u2014Character select,\u201d \u201cpartner\u2014Father & son,\u201d \u201cpartner\u2014Friends forever,\u201d and \u201cpartner\u2014Survivors.\u201d"
+    },
+    {
+      "rule": "702.49c",
+      "old_text": "A ninjutsu ability may be activated only while a creature on the battlefield is unblocked (see rule 509.1h). The creature with ninjutsu is put onto the battlefield unblocked. It will be attacking the same player, planeswalker, or battle as the creature that was returned to its owner\u2019s hand.",
+      "new_text": "The creature put onto the battlefield with the ninjutsu ability enters attacking the same player, planeswalker, or battle as the creature that was returned to its owner\u2019s hand."
+    }
+  ],
+  "added": [
+    {
+      "rule": "111.10v",
+      "text": "A Mutagen token is a colorless Mutagen artifact token with \u201c{1}, {T}, Sacrifice this token: Put a +1/+1 counter on target creature. Activate only as a sorcery.\u201d"
+    },
+    {
+      "rule": "506.3g",
+      "text": "If a resolving spell or ability would cause a battle to become an attacking or blocking creature, that part of the effect does nothing."
+    },
+    {
+      "rule": "508.4d",
+      "text": "A creature that\u2019s put onto the battlefield attacking during the declare blockers step, combat damage step, or end of combat step enters the battlefield as an unblocked creature. It remains unblocked until it is removed from combat, an effect says it becomes blocked, or the combat phase ends, whichever comes first."
+    },
+    {
+      "rule": "702.190",
+      "text": "Sneak"
+    },
+    {
+      "rule": "702.190a",
+      "text": "Sneak is a keyword that represents a static ability that functions while the spell with sneak is on the stack. \u201cSneak [cost]\u201d means \u201cAny time you could cast an instant during your declare blockers step, you may choose to pay [cost] and return an unblocked creature you control to its owner\u2019s hand rather than pay this spell\u2019s mana cost.\u201d"
+    },
+    {
+      "rule": "702.190b",
+      "text": "A permanent spell cast using sneak enters the battlefield tapped and attacking (see rule 506.3a). It will be attacking the same player, planeswalker, or battle as the creature that was returned to its owner\u2019s hand to pay the sneak cost of the spell that became that permanent."
+    }
+  ],
+  "removed": [],
+  "renumbered": []
+}
