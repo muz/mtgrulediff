@@ -5,11 +5,11 @@
   "new_effective_date": "April 17, 2026",
   "summary": {
     "unchanged": 2985,
-    "modified": 17,
+    "modified": 14,
     "added": 21,
     "removed": 3,
-    "renumbered": 92,
-    "renumbered_and_modified": 6,
+    "renumbered": 101,
+    "renumbered_and_modified": 0,
     "reference_renumbered": 17
   },
   "modified": [
@@ -82,21 +82,6 @@
       "rule": "714.3a",
       "old_text": "As a Saga without the read ahead ability enters the battlefield, its controller puts a lore counter on it. As a Saga with the read ahead ability enters the battlefield, its controller chooses a number from one to that Saga\u2019s final chapter number. That Saga enters the battlefield with the chosen number of lore counters on it. (See rule 702.155, \u201cRead Ahead.\u201d)",
       "new_text": "Each Saga without read ahead has the intrinsic ability \u201cThis Saga enters with a lore counter on it.\u201d This ability creates a replacement effect (see rule 614.1c)."
-    },
-    {
-      "rule": "725.1",
-      "old_text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative.",
-      "new_text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch."
-    },
-    {
-      "rule": "725.3",
-      "old_text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it.",
-      "new_text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch."
-    },
-    {
-      "rule": "725.4",
-      "old_text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative.",
-      "new_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch."
     }
   ],
   "reference_renumbered": [
@@ -274,16 +259,16 @@
   ],
   "removed": [
     {
-      "rule": "724.1",
-      "text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch."
+      "rule": "725.1",
+      "text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
     },
     {
-      "rule": "724.3",
-      "text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch."
+      "rule": "725.3",
+      "text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
     },
     {
-      "rule": "724.4",
-      "text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch."
+      "rule": "725.4",
+      "text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
     }
   ],
   "renumbered": [
@@ -491,11 +476,32 @@
       "new_text": "If an effect attempts to end the combat phase at any time that\u2019s not a combat phase, nothing happens."
     },
     {
+      "old_rule": "724.1",
+      "new_rule": "725.1",
+      "similarity": 1.0,
+      "old_text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch.",
+      "new_text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch."
+    },
+    {
       "old_rule": "724.2",
       "new_rule": "725.2",
       "similarity": 1.0,
       "old_text": "There are two inherent triggered abilities associated with being the monarch. These triggered abilities have no source and are controlled by the player who was the monarch at the time the abilities triggered. This is an exception to rule 113.8. The full texts of these abilities are \u201cAt the beginning of the monarch\u2019s end step, that player draws a card\u201d and \u201cWhenever a creature deals combat damage to the monarch, its controller becomes the monarch.\u201d",
       "new_text": "There are two inherent triggered abilities associated with being the monarch. These triggered abilities have no source and are controlled by the player who was the monarch at the time the abilities triggered. This is an exception to rule 113.8. The full texts of these abilities are \u201cAt the beginning of the monarch\u2019s end step, that player draws a card\u201d and \u201cWhenever a creature deals combat damage to the monarch, its controller becomes the monarch.\u201d"
+    },
+    {
+      "old_rule": "724.3",
+      "new_rule": "725.3",
+      "similarity": 1.0,
+      "old_text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch.",
+      "new_text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch."
+    },
+    {
+      "old_rule": "724.4",
+      "new_rule": "725.4",
+      "similarity": 1.0,
+      "old_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch.",
+      "new_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch."
     },
     {
       "old_rule": "724.5",
@@ -14786,13 +14792,8 @@
       "similarity": 1.0
     },
     {
-      "rule": "724.1",
-      "status": "removed",
-      "text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch."
-    },
-    {
       "rule": "724.1a",
-      "status": "renumbered_and_modified",
+      "status": "renumbered",
       "old_rule": "723.1a",
       "old_text": "If there are any triggered abilities that triggered before this process began but haven\u2019t been put onto the stack yet, those abilities cease to exist. They won\u2019t be put onto the stack. This rule does not apply to abilities that trigger during this process (see rule 723.1f).",
       "new_text": "If there are any triggered abilities that triggered before this process began but haven\u2019t been put onto the stack yet, those abilities cease to exist. They won\u2019t be put onto the stack. This rule does not apply to abilities that trigger during this process (see rule 724.1f).",
@@ -14848,7 +14849,7 @@
     },
     {
       "rule": "724.2a",
-      "status": "renumbered_and_modified",
+      "status": "renumbered",
       "old_rule": "723.2a",
       "old_text": "If there are any triggered abilities that triggered before this process began but haven\u2019t been put onto the stack yet, those abilities cease to exist. They won\u2019t be put onto the stack. This rule does not apply to abilities that trigger during this process (see rule 723.2f).",
       "new_text": "If there are any triggered abilities that triggered before this process began but haven\u2019t been put onto the stack yet, those abilities cease to exist. They won\u2019t be put onto the stack. This rule does not apply to abilities that trigger during this process (see rule 724.2f).",
@@ -14903,20 +14904,17 @@
       "similarity": 1.0
     },
     {
-      "rule": "724.3",
-      "status": "removed",
-      "text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch."
-    },
-    {
-      "rule": "724.4",
-      "status": "removed",
-      "text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch."
+      "rule": "725.1",
+      "status": "renumbered",
+      "old_rule": "724.1",
+      "old_text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch.",
+      "new_text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch.",
+      "similarity": 1.0
     },
     {
       "rule": "725.1",
-      "status": "modified",
-      "old_text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative.",
-      "new_text": "The monarch is a designation a player can have. There is no monarch in a game until an effect instructs a player to become the monarch."
+      "status": "removed",
+      "text": "The initiative is a designation a player can have. There is no initiative in a game until an effect instructs a player to take the initiative. A player who currently has the initiative designation is said to have the initiative."
     },
     {
       "rule": "725.2",
@@ -14928,15 +14926,29 @@
     },
     {
       "rule": "725.3",
-      "status": "modified",
-      "old_text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it.",
-      "new_text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch."
+      "status": "renumbered",
+      "old_rule": "724.3",
+      "old_text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch.",
+      "new_text": "Only one player can be the monarch at a time. As a player becomes the monarch, the current monarch ceases to be the monarch.",
+      "similarity": 1.0
+    },
+    {
+      "rule": "725.3",
+      "status": "removed",
+      "text": "Only one player can have the initiative at a time. As a player takes the initiative, the player who currently has the initiative ceases to have it."
     },
     {
       "rule": "725.4",
-      "status": "modified",
-      "old_text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative.",
-      "new_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch."
+      "status": "renumbered",
+      "old_rule": "724.4",
+      "old_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch.",
+      "new_text": "If the monarch leaves the game, the active player becomes the monarch at the same time as that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order who can become the monarch becomes the monarch. If no player still in the game can become the monarch, the game continues with no monarch.",
+      "similarity": 1.0
+    },
+    {
+      "rule": "725.4",
+      "status": "removed",
+      "text": "If the player who has the initiative leaves the game, the active player takes the initiative at the same time that player leaves the game. If the active player is leaving the game or if there is no active player, the next player in turn order takes the initiative."
     },
     {
       "rule": "725.5",
@@ -14971,7 +14983,7 @@
     },
     {
       "rule": "726.5",
-      "status": "renumbered_and_modified",
+      "status": "renumbered",
       "old_rule": "725.5",
       "old_text": "If the player who currently has the initiative is instructed to take the initiative, this causes the last triggered ability in 725.2 to trigger but does not create a second initiative designation.",
       "new_text": "If the player who currently has the initiative is instructed to take the initiative, this causes the last triggered ability in 726.2 to trigger but does not create a second initiative designation.",
@@ -15035,7 +15047,7 @@
     },
     {
       "rule": "727.6",
-      "status": "renumbered_and_modified",
+      "status": "renumbered",
       "old_rule": "726.6",
       "old_text": "If a Magic subgame (see rule 728) is restarted, the main game is unaffected. Main-game effects that refer to the winner or loser of the subgame now refer to the winner or loser of the restarted subgame.",
       "new_text": "If a Magic subgame (see rule 729) is restarted, the main game is unaffected. Main-game effects that refer to the winner or loser of the subgame now refer to the winner or loser of the restarted subgame.",
@@ -15091,7 +15103,7 @@
     },
     {
       "rule": "729.2",
-      "status": "renumbered_and_modified",
+      "status": "renumbered",
       "old_rule": "728.2",
       "old_text": "As the subgame starts, an entirely new set of game zones is created. Each player takes all the cards in their main-game library, moves them to their subgame library, and shuffles them. No other cards in a main-game zone are moved to their corresponding subgame zone, except as specified in rules 728.2a\u2013c. Randomly determine which player goes first. The subgame proceeds like a normal game, following all other rules in rule 103, \u201cStarting the Game.\u201d",
       "new_text": "As the subgame starts, an entirely new set of game zones is created. Each player takes all the cards in their main-game library, moves them to their subgame library, and shuffles them. No other cards in a main-game zone are moved to their corresponding subgame zone, except as specified in rules 729.2a\u2013c. Randomly determine which player goes first. The subgame proceeds like a normal game, following all other rules in rule 103, \u201cStarting the Game.\u201d",
@@ -15155,7 +15167,7 @@
     },
     {
       "rule": "729.5",
-      "status": "renumbered_and_modified",
+      "status": "renumbered",
       "old_rule": "728.5",
       "old_text": "At the end of a subgame, each player takes all traditional cards they own that are in the subgame other than those in the subgame command zone, puts them into their main-game library, then shuffles them. This includes cards in the subgame\u2019s exile zone and cards that represent phased-out permanents as the subgame ends. Except as specified in rules 728.5a\u2013c, all other objects in the subgame cease to exist, as do the zones created for the subgame. The main game continues from the point at which it was discontinued: First, the spell or ability that created the subgame finishes resolving, even if it was created by a spell card that\u2019s no longer on the stack. Then, if any main-game abilities triggered while the subgame was in progress due to cards being removed from the main game, those abilities are put onto the stack.",
       "new_text": "At the end of a subgame, each player takes all traditional cards they own that are in the subgame other than those in the subgame command zone, puts them into their main-game library, then shuffles them. This includes cards in the subgame\u2019s exile zone and cards that represent phased-out permanents as the subgame ends. Except as specified in rules 729.5a\u2013c, all other objects in the subgame cease to exist, as do the zones created for the subgame. The main game continues from the point at which it was discontinued: First, the spell or ability that created the subgame finishes resolving, even if it was created by a spell card that\u2019s no longer on the stack. Then, if any main-game abilities triggered while the subgame was in progress due to cards being removed from the main game, those abilities are put onto the stack.",

@@ -173,6 +173,24 @@ def page_template(title, subtitle, content, root_rel):
     <main class=\"container\">
       {content}
     </main>
+    <script>
+      (function () {{
+        function updateScrollMargin() {{
+          var nav = document.querySelector('.change-nav');
+          if (!nav) return;
+          var h = Math.round(nav.getBoundingClientRect().height) + 16;
+          var style = document.getElementById('scroll-margin-style');
+          if (!style) {{
+            style = document.createElement('style');
+            style.id = 'scroll-margin-style';
+            document.head.appendChild(style);
+          }}
+          style.textContent = '.doc-rule, .renumber-group {{ scroll-margin-top: ' + h + 'px; }}';
+        }}
+        updateScrollMargin();
+        window.addEventListener('resize', updateScrollMargin);
+      }})();
+    </script>
   </body>
 </html>
 """
@@ -872,6 +890,12 @@ h2 { margin-top: 30px; }
   padding: 3px 12px;
   font-size: 0.87rem;
   line-height: 1.5;
+}
+
+/* Offset anchor targets below the sticky nav (updated dynamically by JS) */
+.doc-rule,
+.renumber-group {
+  scroll-margin-top: 120px;
 }
 
 /* Changed rule cards */

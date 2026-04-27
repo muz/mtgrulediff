@@ -68,7 +68,7 @@ def similarity(a, b):
 
 _RULE_REF_RE = re.compile(r'\b(\d+\.\d+[a-z]*)\b')
 # Matches bare section refs preceded by "rule" or "rules", e.g. "see rule 726,"
-_RULE_SECTION_REF_RE = re.compile(r'\b(rules?\s+)(\d+)\b', re.IGNORECASE)
+_RULE_SECTION_REF_RE = re.compile(r'\b(rules?\s+)(\d+)\b(?!\.)', re.IGNORECASE)
 
 
 def is_reference_only_change(old_text, new_text, renumber_map, section_renumber_map):
@@ -225,18 +225,62 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
             added_after[key] = text
     modified.sort(key=lambda r: rule_sort_key(r["rule"]))
 
+    # Displacement detection: handles section shifts where the structural
+    # similarity between old and new content at the same key exceeds the
+    # collision threshold (so collision detection didn't fire), but a
+    # key-absent removed rule has near-identical text to the modified
+    # rule's new content.  In that case the removed rule was actually
+    # renamed to that key, and the old occupant is truly removed.
+    disp_candidates = []
+    for old_key, old_text in list(removed_after.items()):
+        for mod_entry in modified:
+            score = similarity(old_text, mod_entry["new_text"])
+            if score >= renumber_threshold:
+                disp_candidates.append((score, old_key, mod_entry["rule"], mod_entry))
+    disp_candidates.sort(reverse=True)
+    used_disp_old: set = set()
+    used_disp_mod: set = set()
+    disp_keys_removed: set = set()
+    disp_keys_mod: set = set()
+    for score, old_key, mod_key, mod_entry in disp_candidates:
+        if old_key in used_disp_old or mod_key in used_disp_mod:
+            continue
+        used_disp_old.add(old_key)
+        used_disp_mod.add(mod_key)
+        disp_keys_removed.add(old_key)
+        disp_keys_mod.add(mod_key)
+        renumbered.append({
+            "old_rule": old_key,
+            "new_rule": mod_key,
+            "similarity": score,
+            "old_text": removed_after[old_key],
+            "new_text": mod_entry["new_text"],
+        })
+        # The old occupant at mod_key is now truly removed.
+        removed_after[mod_key] = mod_entry["old_text"]
+    for key in disp_keys_removed:
+        del removed_after[key]
+    modified = [e for e in modified if e["rule"] not in disp_keys_mod]
+    modified.sort(key=lambda r: rule_sort_key(r["rule"]))
+
+    # Build renumber maps first so they can be used in the split below.
+    renumber_map = {r["old_rule"]: r["new_rule"] for r in renumbered}
+    section_renumber_map = build_section_renumber_map(renumber_map)
+
     renumbered_only = [
-        r for r in renumbered if normalize_text(r["old_text"]) == normalize_text(r["new_text"])
+        r for r in renumbered
+        if normalize_text(r["old_text"]) == normalize_text(r["new_text"])
+        or is_reference_only_change(r["old_text"], r["new_text"], renumber_map, section_renumber_map)
     ]
     renumbered_and_modified = [
-        r for r in renumbered if normalize_text(r["old_text"]) != normalize_text(r["new_text"])
+        r for r in renumbered
+        if normalize_text(r["old_text"]) != normalize_text(r["new_text"])
+        and not is_reference_only_change(r["old_text"], r["new_text"], renumber_map, section_renumber_map)
     ]
 
     # Detect modified rules whose only change is rule-number references that
     # map directly to a known renumbering.  These are really just reference
     # maintenance — no semantic change — so we surface them like renumberings.
-    renumber_map = {r["old_rule"]: r["new_rule"] for r in renumbered}
-    section_renumber_map = build_section_renumber_map(renumber_map)
     true_modified = []
     ref_renumbered = []
     for entry in modified:
@@ -274,6 +318,9 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
         elif rule_id in renumbered_new_lookup:
             r = renumbered_new_lookup[rule_id]
             is_mod = normalize_text(r["old_text"]) != normalize_text(r["new_text"])
+            if is_mod and is_reference_only_change(r["old_text"], r["new_text"],
+                                                   renumber_map, section_renumber_map):
+                is_mod = False
             all_entries.append({
                 "rule": rule_id,
                 "status": "renumbered_and_modified" if is_mod else "renumbered",

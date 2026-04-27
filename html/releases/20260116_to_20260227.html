@@ -81,5 +81,23 @@
     </div>
     
     </main>
+    <script>
+      (function () {
+        function updateScrollMargin() {
+          var nav = document.querySelector('.change-nav');
+          if (!nav) return;
+          var h = Math.round(nav.getBoundingClientRect().height) + 16;
+          var style = document.getElementById('scroll-margin-style');
+          if (!style) {
+            style = document.createElement('style');
+            style.id = 'scroll-margin-style';
+            document.head.appendChild(style);
+          }
+          style.textContent = '.doc-rule, .renumber-group { scroll-margin-top: ' + h + 'px; }';
+        }
+        updateScrollMargin();
+        window.addEventListener('resize', updateScrollMargin);
+      })();
+    </script>
   </body>
 </html>

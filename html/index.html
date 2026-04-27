@@ -31,8 +31,8 @@
                 <span class="timeline-stats">
                   <span class="count-pill added">+21 added</span>
                   <span class="count-pill removed">-3 removed</span>
-                  <span class="count-pill modified">~17 modified</span>
-                  <span class="count-pill renumbered">#92 renumbered</span>
+                  <span class="count-pill modified">~14 modified</span>
+                  <span class="count-pill renumbered">#101 renumbered</span>
                 </span>
               </a>
             </li> <li class="timeline-item">
@@ -83,5 +83,23 @@
     </section>
     
     </main>
+    <script>
+      (function () {
+        function updateScrollMargin() {
+          var nav = document.querySelector('.change-nav');
+          if (!nav) return;
+          var h = Math.round(nav.getBoundingClientRect().height) + 16;
+          var style = document.getElementById('scroll-margin-style');
+          if (!style) {
+            style = document.createElement('style');
+            style.id = 'scroll-margin-style';
+            document.head.appendChild(style);
+          }
+          style.textContent = '.doc-rule, .renumber-group { scroll-margin-top: ' + h + 'px; }';
+        }
+        updateScrollMargin();
+        window.addEventListener('resize', updateScrollMargin);
+      })();
+    </script>
   </body>
 </html>
