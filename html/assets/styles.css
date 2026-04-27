@@ -251,11 +251,17 @@ h2 { margin-top: 30px; }
 /* ── Document view ─────────────────────────────────────────────────────────── */
 
 .change-nav {
-  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 253, 248, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 12px 14px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
 }
 .change-nav-title {
   font-size: 0.8rem;
@@ -397,4 +403,51 @@ h2 { margin-top: 30px; }
   opacity: 0.72;
   text-decoration: line-through;
   text-decoration-color: #d7a0a0;
+}
+
+/* Collapsed renumber group */
+.renumber-group {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 3px 0;
+}
+.renumber-group > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px dashed #8fb9d9;
+  color: #1f4d76;
+  font-size: 0.84rem;
+  user-select: none;
+  transition: background 0.15s;
+  background: #f4f9ff;
+}
+.renumber-group > summary::-webkit-details-marker { display: none; }
+.renumber-group > summary::marker { display: none; }
+.renumber-group > summary:hover { background: #e6f1fb; }
+.renumber-group[open] > summary .expand-chevron { transform: rotate(90deg); }
+.renumber-rules-list {
+  border-left: 2px solid #8fb9d9;
+  margin-left: 18px;
+  padding: 4px 0;
+}
+.doc-renumber-row {
+  display: grid;
+  grid-template-columns: 7ch 1.2rem 7ch 1fr;
+  gap: 6px;
+  align-items: baseline;
+  padding: 3px 12px;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+.renumber-row-text {
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

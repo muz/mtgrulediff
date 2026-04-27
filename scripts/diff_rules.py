@@ -133,12 +133,58 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
         else:
             modified.append({"rule": rule, "old_text": old_text, "new_text": new_text})
 
+    # Rules where the same key appears in both versions but the text has very low
+    # similarity are almost certainly a section-shift collision — an entirely
+    # different rule happened to land on the same number.  Pull these out of the
+    # "modified" bucket and feed them into the renumber-detection pool instead,
+    # so that the actual textual matches can be found across the shift boundary.
+    COLLISION_THRESHOLD = 0.45
+    true_modified = []
+    collision_removed = {}  # old-key → old_text
+    collision_added = {}    # new-key → new_text
+    for entry in modified:
+        score = similarity(entry["old_text"], entry["new_text"])
+        if score < COLLISION_THRESHOLD:
+            collision_removed[entry["rule"]] = entry["old_text"]
+            collision_added[entry["rule"]] = entry["new_text"]
+        else:
+            true_modified.append(entry)
+    modified = true_modified
+
     removed = {rule: old_rules[rule] for rule in sorted(old_keys - new_keys)}
     added = {rule: new_rules[rule] for rule in sorted(new_keys - old_keys)}
 
-    renumbered, removed_after, added_after = detect_renumberings(
-        removed, added, threshold=renumber_threshold
+    # Merge collision candidates with genuinely key-absent rules for detection.
+    removed_pool = {**removed, **collision_removed}
+    added_pool = {**added, **collision_added}
+
+    renumbered, remaining_removed_pool, remaining_added_pool = detect_renumberings(
+        removed_pool, added_pool, threshold=renumber_threshold
     )
+
+    # Split remaining back into true-removed (key absent) and collision leftovers.
+    # Collision leftovers that weren't matched by renumber detection are true
+    # modifications after all — reinstate them in the modified list.
+    removed_after = {k: v for k, v in remaining_removed_pool.items() if k not in collision_removed}
+    added_after = {k: v for k, v in remaining_added_pool.items() if k not in collision_added}
+
+    unmatched_collision_old = {k: v for k, v in remaining_removed_pool.items() if k in collision_removed}
+    unmatched_collision_new = {k: v for k, v in remaining_added_pool.items() if k in collision_added}
+    # Re-pair unmatched collision rules that share the same key back into modified.
+    for key in set(unmatched_collision_old) & set(unmatched_collision_new):
+        modified.append({
+            "rule": key,
+            "old_text": unmatched_collision_old[key],
+            "new_text": unmatched_collision_new[key],
+        })
+    # Any that lost their pair entirely become true removed/added.
+    for key, text in unmatched_collision_old.items():
+        if key not in unmatched_collision_new:
+            removed_after[key] = text
+    for key, text in unmatched_collision_new.items():
+        if key not in unmatched_collision_old:
+            added_after[key] = text
+    modified.sort(key=lambda r: rule_sort_key(r["rule"]))
 
     renumbered_only = [
         r for r in renumbered if normalize_text(r["old_text"]) == normalize_text(r["new_text"])
