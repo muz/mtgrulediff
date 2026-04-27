@@ -67,23 +67,22 @@ def similarity(a, b):
 
 
 _RULE_REF_RE = re.compile(r'\b(\d+\.\d+[a-z]*)\b')
-# Matches bare section refs preceded by "rule" or "rules", e.g. "see rule 726,"
-_RULE_SECTION_REF_RE = re.compile(r'\b(rules?\s+)(\d+)\b(?!\.)', re.IGNORECASE)
 
 
 def is_reference_only_change(old_text, new_text, renumber_map, section_renumber_map):
     """Return True if old_text and new_text differ only in rule-number references
     that are all accounted for by the supplied renumber maps (sub-rule and section).
+
+    Three substitution passes, each run at most once on the original predicted text:
+      Pass 1: sub-rule refs like "723.1f" (matched by _RULE_REF_RE, dot notation)
+      Pass 2: bare section numbers not followed by "." — covers both "rule 726" and
+              "and 729, ..." contexts in a single pass.  Running a separate
+              "rule/rules N" pass first and then a bare-number pass would cause
+              double-substitution on consecutive section numbers.
     """
     predicted = _RULE_REF_RE.sub(
         lambda m: renumber_map.get(m.group(1), m.group(1)), old_text
     )
-    predicted = _RULE_SECTION_REF_RE.sub(
-        lambda m: m.group(1) + section_renumber_map.get(m.group(2), m.group(2)), predicted
-    )
-    # Third pass: bare section numbers not preceded by "rule/rules" (e.g. "and 729,"
-    # at the end of a "see rules X, and Y" list).  Only substitutes numbers that are
-    # actually in section_renumber_map, so false positives are impossible.
     if section_renumber_map:
         predicted = re.sub(
             r'\b(\d+)\b(?!\.)',
