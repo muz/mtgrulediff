@@ -18,11 +18,11 @@ This project processes two versions of the rules document, diffs them, and gener
 ```
 rules/          ← raw rules text files, one per release (e.g. 20250411.txt)
 scripts/        ← scripts that parse, diff, and generate HTML
-html/           ← generated output, served via GitHub Pages
+docs/           ← generated output, served via GitHub Pages
 ```
 
 1. Add a new rules text file to `rules/` when a new set releases
-2. Run the generation script — it diffs the new file against the previous release and writes output to `html/`
+2. Run the generation script — it diffs the new file against the previous release and writes output to `docs/`
 3. Commit and push — GitHub Pages serves the updated site automatically
 
 ## Current scripts
@@ -62,8 +62,8 @@ python3 scripts/build_data.py
 
 This generates:
 
-- `html/data/releases.json`
-- `html/data/diffs/<old_yyyymmdd>_to_<new_yyyymmdd>.json`
+- `docs/data/releases.json`
+- `docs/data/diffs/<old_yyyymmdd>_to_<new_yyyymmdd>.json`
 
 Build everything in one command:
 
@@ -86,7 +86,16 @@ An index page lists all tracked releases in reverse chronological order so users
 
 ## Hosting
 
-The `html/` directory is served directly via GitHub Pages. No build step is required at serve time — all diffs are pre-generated.
+The `docs/` directory is served directly via GitHub Pages. To set it up:
+
+1. Push this repository to GitHub
+2. Go to **Settings → Pages** in your repository
+3. Under "Build and deployment", select:
+   - Source: **Deploy from a branch**
+   - Branch: **main** / `docs/`
+4. Save — your site will be live at `https://<username>.github.io/mtgrulediff/`
+
+The `.nojekyll` file in the root disables Jekyll processing, allowing CSS and JS to work correctly. No build step is required at serve time — all diffs are pre-generated.
 
 ## Data format
 

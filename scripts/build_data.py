@@ -3,7 +3,7 @@ Build pre-generated JSON data for static site generation.
 
 Usage:
     python build_data.py
-    python build_data.py --rules-dir rules --out-dir html/data
+    python build_data.py --rules-dir rules --out-dir docs/data
 
 Creates:
   - <out-dir>/releases.json
@@ -55,7 +55,7 @@ def build_release_metadata(rule_files):
 def main():
     parser = argparse.ArgumentParser(description="Build JSON artifacts for MTG rules diff site")
     parser.add_argument("--rules-dir", default="rules", help="Directory containing rules text files")
-    parser.add_argument("--out-dir", default="html/data", help="Directory to write JSON artifacts")
+    parser.add_argument("--out-dir", default="docs/data", help="Directory to write JSON artifacts")
     parser.add_argument(
         "--renumber-threshold",
         type=float,

@@ -2,7 +2,7 @@
 
 Usage:
     python build_site.py
-    python build_site.py --data-dir html/data --out-dir html
+    python build_site.py --data-dir docs/data --out-dir docs
 """
 
 import argparse
@@ -1110,8 +1110,8 @@ h2 { margin-top: 30px; }
 
 def main():
     parser = argparse.ArgumentParser(description="Build static HTML from MTG diff JSON")
-    parser.add_argument("--data-dir", default="html/data", help="Directory with releases.json and diffs/")
-    parser.add_argument("--out-dir", default="html", help="Output HTML directory")
+    parser.add_argument("--data-dir", default="docs/data", help="Directory with releases.json and diffs/")
+    parser.add_argument("--out-dir", default="docs", help="Output HTML directory")
     args = parser.parse_args()
 
     data_dir = Path(args.data_dir)

@@ -21,8 +21,8 @@ def run_step(command, label):
 def main():
     parser = argparse.ArgumentParser(description="Build JSON data and static HTML pages")
     parser.add_argument("--rules-dir", default="rules", help="Directory containing rules text files")
-    parser.add_argument("--data-dir", default="html/data", help="Directory for generated JSON data")
-    parser.add_argument("--out-dir", default="html", help="Directory for generated HTML site")
+    parser.add_argument("--data-dir", default="docs/data", help="Directory for generated JSON data")
+    parser.add_argument("--out-dir", default="docs", help="Directory for generated HTML site")
     parser.add_argument(
         "--renumber-threshold",
         type=float,
