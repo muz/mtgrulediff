@@ -177,6 +177,162 @@ def page_template(title, subtitle, content, root_rel):
 """
 
 
+def render_change_nav(nav_items):
+    if not nav_items:
+        return ""
+
+    STATUS_CLASS = {
+        "modified": "modified",
+        "added": "added",
+        "removed": "removed",
+        "renumbered": "renumbered",
+        "renumbered_and_modified": "renumbered",
+    }
+
+    links = []
+    for status, entry, anchor_id in nav_items:
+        pill_class = STATUS_CLASS.get(status, "modified")
+        if status in ("renumbered", "renumbered_and_modified"):
+            label = f"{html.escape(entry['old_rule'])} → {html.escape(entry['rule'])}"
+        else:
+            label = html.escape(entry["rule"])
+        links.append(f'<a class="count-pill {pill_class}" href="#{anchor_id}">{label}</a>')
+
+    return f"""
+    <div class="change-nav">
+      <div class="change-nav-title">Navigate {len(nav_items)} changes</div>
+      <div class="change-nav-links">{"".join(links)}</div>
+    </div>
+    """.strip()
+
+
+def render_unchanged_group(rules):
+    count = len(rules)
+    first_rule = html.escape(rules[0]["rule"])
+    last_rule = html.escape(rules[-1]["rule"])
+    range_hint = f"{first_rule} — {last_rule}" if count > 1 else first_rule
+
+    rows = []
+    for entry in rules:
+        rows.append(
+            f'<div class="doc-rule unchanged">'
+            f'<span class="doc-rule-num">{html.escape(entry["rule"])}</span>'
+            f'<span>{html.escape(entry["text"])}</span>'
+            f'</div>'
+        )
+
+    return (
+        f'<details class="unchanged-group">'
+        f'<summary>'
+        f'<span class="expand-chevron">›</span>'
+        f'<span>{count} unchanged {"rule" if count == 1 else "rules"}</span>'
+        f'<span class="range-hint">{range_hint}</span>'
+        f'</summary>'
+        f'<div class="unchanged-rules-list">{"".join(rows)}</div>'
+        f'</details>'
+    )
+
+
+def render_changed_rule(entry, anchor_id):
+    status = entry["status"]
+    css_class = status.replace("_", "-")
+
+    if status == "modified":
+        old_h, new_h = render_highlighted_diff(entry["old_text"], entry["new_text"])
+        body = f"""
+        <div class="diff-grid">
+          <div><div class="version-label">Before</div><p class="rule-text">{old_h}</p></div>
+          <div><div class="version-label">After</div><p class="rule-text">{new_h}</p></div>
+        </div>"""
+        header = (
+            f'<span class="doc-rule-num {css_class}">{html.escape(entry["rule"])}</span>'
+            f'<span class="change-badge modified">Modified</span>'
+        )
+
+    elif status == "added":
+        body = f'<p class="rule-text">{html.escape(entry["text"])}</p>'
+        header = (
+            f'<span class="doc-rule-num {css_class}">{html.escape(entry["rule"])}</span>'
+            f'<span class="change-badge added">Added</span>'
+        )
+
+    elif status == "removed":
+        body = f'<p class="rule-text removed-text">{html.escape(entry["text"])}</p>'
+        header = (
+            f'<span class="doc-rule-num {css_class}">{html.escape(entry["rule"])}</span>'
+            f'<span class="change-badge removed">Removed</span>'
+        )
+
+    elif status in ("renumbered", "renumbered_and_modified"):
+        label = "Renumbered + Modified" if status == "renumbered_and_modified" else "Renumbered"
+        badge_class = "renumbered-modified" if status == "renumbered_and_modified" else "renumbered"
+        header = (
+            f'<span class="doc-rule-num renumbered">{html.escape(entry["old_rule"])}</span>'
+            f'<span class="arrow">→</span>'
+            f'<span class="doc-rule-num renumbered">{html.escape(entry["rule"])}</span>'
+            f'<span class="change-badge {badge_class}">{label}</span>'
+        )
+        if status == "renumbered_and_modified":
+            old_h, new_h = render_highlighted_diff(entry["old_text"], entry["new_text"])
+            body = f"""
+            <div class="diff-grid">
+              <div><div class="version-label">Before ({html.escape(entry["old_rule"])})</div><p class="rule-text">{old_h}</p></div>
+              <div><div class="version-label">After ({html.escape(entry["rule"])})</div><p class="rule-text">{new_h}</p></div>
+            </div>"""
+        else:
+            body = f'<p class="rule-text">{html.escape(entry["new_text"])}</p>'
+    else:
+        return ""
+
+    return (
+        f'<div class="doc-rule {css_class}" id="{anchor_id}">'
+        f'<div class="rule-header">{header}</div>'
+        f'{body}'
+        f'</div>'
+    )
+
+
+def render_document_view(diff):
+    all_rules = diff.get("all_rules_ordered")
+    if not all_rules:
+        return "<p class=\"muted\">Document view unavailable — re-run build_data.py to regenerate diff JSON.</p>"
+
+    # Segment into runs of unchanged rules and individual changed rules.
+    segments = []
+    current_unchanged = []
+    nav_items = []
+    change_counter = 0
+
+    for entry in all_rules:
+        if entry["status"] == "unchanged":
+            current_unchanged.append(entry)
+        else:
+            if current_unchanged:
+                segments.append(("group", current_unchanged))
+                current_unchanged = []
+            change_counter += 1
+            anchor_id = f"c{change_counter}"
+            segments.append(("changed", entry, anchor_id))
+            nav_items.append((entry["status"], entry, anchor_id))
+
+    if current_unchanged:
+        segments.append(("group", current_unchanged))
+
+    parts = []
+    for seg in segments:
+        if seg[0] == "group":
+            parts.append(render_unchanged_group(seg[1]))
+        else:
+            parts.append(render_changed_rule(seg[1], seg[2]))
+
+    return f"""
+    {render_change_nav(nav_items)}
+    <div class="doc-view">
+      {"".join(parts)}
+    </div>
+    """.strip()
+
+
 def render_diff_page(diff, out_path):
     summary = diff["summary"]
     title = f"{diff['old_effective_date']} to {diff['new_effective_date']}"
@@ -188,25 +344,7 @@ def render_diff_page(diff, out_path):
       <div class=\"stat-grid\">{render_summary_cards(summary)}</div>
     </section>
 
-    <section>
-      <h2 id=\"renumbered\">Renumbered</h2>
-      {render_rule_details(diff.get('renumbered', []), 'renumbered')}
-    </section>
-
-    <section>
-      <h2 id=\"modified\">Modified</h2>
-      {render_rule_details(diff.get('modified', []), 'modified')}
-    </section>
-
-    <section>
-      <h2 id=\"added\">Added</h2>
-      {render_rule_details(diff.get('added', []), 'added')}
-    </section>
-
-    <section>
-      <h2 id=\"removed\">Removed</h2>
-      {render_rule_details(diff.get('removed', []), 'removed')}
-    </section>
+    {render_document_view(diff)}
     """
 
     page = page_template(
@@ -533,6 +671,157 @@ h2 { margin-top: 30px; }
   .timeline-stats { justify-content: flex-start; }
   .site-header { padding: 18px 14px 6px; }
   .container { padding: 10px 14px 40px; }
+}
+
+/* ── Document view ─────────────────────────────────────────────────────────── */
+
+.change-nav {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+}
+.change-nav-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.change-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.change-nav-links a { text-decoration: none; }
+
+.doc-view {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Collapsed unchanged group */
+.unchanged-group {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+.unchanged-group > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px dashed #c9c0af;
+  color: var(--muted);
+  font-size: 0.84rem;
+  user-select: none;
+  transition: background 0.15s;
+}
+.unchanged-group > summary::-webkit-details-marker { display: none; }
+.unchanged-group > summary::marker { display: none; }
+.unchanged-group > summary:hover { background: #f0ece4; }
+.expand-chevron {
+  display: inline-block;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.18s;
+  flex-shrink: 0;
+}
+.unchanged-group[open] > summary .expand-chevron { transform: rotate(90deg); }
+.range-hint {
+  font-family: "Menlo", "Monaco", monospace;
+  font-size: 0.76rem;
+  opacity: 0.65;
+  margin-left: auto;
+}
+.unchanged-rules-list {
+  border-left: 2px solid #d8cfbf;
+  margin-left: 18px;
+  padding: 4px 0;
+}
+.doc-rule.unchanged {
+  display: grid;
+  grid-template-columns: 7ch 1fr;
+  gap: 10px;
+  padding: 3px 12px;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+/* Changed rule cards */
+.doc-rule.modified,
+.doc-rule.added,
+.doc-rule.removed,
+.doc-rule.renumbered,
+.doc-rule.renumbered-and-modified {
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 12px 14px;
+  margin: 6px 0;
+}
+.doc-rule.modified { background: #fffdf5; border-color: #e6cc88; }
+.doc-rule.added    { background: #f0faf3; border-color: #7cbf93; }
+.doc-rule.removed  { background: #fff5f5; border-color: #d7a0a0; }
+.doc-rule.renumbered              { background: #f0f6ff; border-color: #8fb9d9; }
+.doc-rule.renumbered-and-modified { background: #f8f0ff; border-color: #c4a0d9; }
+
+.rule-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.doc-rule-num {
+  font-weight: 700;
+  font-family: "Menlo", "Monaco", monospace;
+  font-size: 0.88rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.doc-rule-num.modified           { color: #7a4b03; }
+.doc-rule-num.added              { color: #0f5132; }
+.doc-rule-num.removed            { color: #7f1d1d; }
+.doc-rule-num.renumbered         { color: #1f4d76; }
+.doc-rule-num.renumbered-and-modified { color: #4b1d7a; }
+
+.change-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.change-badge.modified           { background: #fff5df; color: #7a4b03; border: 1px solid #d9c089; }
+.change-badge.added              { background: #eaf9ef; color: #0f5132; border: 1px solid #7cbf93; }
+.change-badge.removed            { background: #ffefef; color: #7f1d1d; border: 1px solid #d7a0a0; }
+.change-badge.renumbered         { background: #ecf6ff; color: #1f4d76; border: 1px solid #8fb9d9; }
+.change-badge.renumbered-modified { background: #f5edff; color: #4b1d7a; border: 1px solid #c4a0d9; }
+
+.version-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.removed-text {
+  opacity: 0.72;
+  text-decoration: line-through;
+  text-decoration-color: #d7a0a0;
 }
 """.strip()
     write_text(path, css + "\n")

@@ -51,6 +51,17 @@ def normalize_text(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+def rule_sort_key(rule):
+    """Numeric sort key for rule numbers like '100.1', '100.1a', '702.19c'."""
+    m = re.match(r"^(\d+)(?:\.(\d+)([a-z]*))?", str(rule))
+    if not m:
+        return (999999, 0, "")
+    main = int(m.group(1))
+    sub = int(m.group(2)) if m.group(2) else 0
+    suffix = m.group(3) or ""
+    return (main, sub, suffix)
+
+
 def similarity(a, b):
     return SequenceMatcher(None, normalize_text(a), normalize_text(b)).ratio()
 
@@ -136,6 +147,42 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
         r for r in renumbered if normalize_text(r["old_text"]) != normalize_text(r["new_text"])
     ]
 
+    # Build ordered list of all rules for the document-view HTML page.
+    modified_lookup = {r["rule"]: r for r in modified}
+    renumbered_new_lookup = {r["new_rule"]: r for r in renumbered}
+    added_after_set = set(added_after.keys())
+
+    all_entries = []
+    for rule_id, text in new_rules.items():
+        if rule_id in modified_lookup:
+            r = modified_lookup[rule_id]
+            all_entries.append({
+                "rule": rule_id,
+                "status": "modified",
+                "old_text": r["old_text"],
+                "new_text": r["new_text"],
+            })
+        elif rule_id in renumbered_new_lookup:
+            r = renumbered_new_lookup[rule_id]
+            is_mod = normalize_text(r["old_text"]) != normalize_text(r["new_text"])
+            all_entries.append({
+                "rule": rule_id,
+                "status": "renumbered_and_modified" if is_mod else "renumbered",
+                "old_rule": r["old_rule"],
+                "old_text": r["old_text"],
+                "new_text": r["new_text"],
+                "similarity": r["similarity"],
+            })
+        elif rule_id in added_after_set:
+            all_entries.append({"rule": rule_id, "status": "added", "text": text})
+        else:
+            all_entries.append({"rule": rule_id, "status": "unchanged", "text": text})
+
+    for rule_id, text in removed_after.items():
+        all_entries.append({"rule": rule_id, "status": "removed", "text": text})
+
+    all_entries.sort(key=lambda e: rule_sort_key(e["rule"]))
+
     result = {
         "old_file": str(Path(old_path).name),
         "new_file": str(Path(new_path).name),
@@ -153,6 +200,7 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
         "added": [{"rule": k, "text": v} for k, v in sorted(added_after.items())],
         "removed": [{"rule": k, "text": v} for k, v in sorted(removed_after.items())],
         "renumbered": sorted(renumbered, key=lambda r: (r["old_rule"], r["new_rule"])),
+        "all_rules_ordered": all_entries,
     }
 
     return result

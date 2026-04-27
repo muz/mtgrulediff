@@ -1,5 +1,12 @@
 [
   {
+    "source_file": "MagicCompRules 20251114.txt",
+    "file_date": "20251114",
+    "effective_date": "November 14, 2025",
+    "rule_count": 3109,
+    "glossary_count": 725
+  },
+  {
     "source_file": "MagicCompRules 20260116.txt",
     "file_date": "20260116",
     "effective_date": "January 16, 2026",
