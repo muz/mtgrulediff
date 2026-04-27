@@ -67,6 +67,7 @@ def render_summary_cards(summary):
         ("removed", "Removed"),
         ("renumbered", "Renumbered"),
         ("renumbered_and_modified", "Renumbered + Modified"),
+        ("reference_renumbered", "Refs Updated"),
     ]
     cards = []
     for key, label in order:
@@ -192,11 +193,12 @@ def render_change_nav(nav_items):
     links = []
     for status, entry, anchor_id in nav_items:
         if status == "renumbered_group":
-            label = (
-                f"{html.escape(entry['first_old'])}–{html.escape(entry['last_old'])}"
-                f" → "
-                f"{html.escape(entry['first_new'])}–{html.escape(entry['last_new'])}"
-            )
+            fo, lo = html.escape(entry['first_old']), html.escape(entry['last_old'])
+            fn, ln = html.escape(entry['first_new']), html.escape(entry['last_new'])
+            if fo == fn and lo == ln:
+                label = f"{fn}\u2013{ln} (refs)" if fn != ln else f"{fn} (refs)"
+            else:
+                label = f"{fo}\u2013{lo} \u2192 {fn}\u2013{ln}"
             links.append(f'<a class="count-pill renumbered" href="#{anchor_id}">{label}</a>')
         else:
             pill_class = STATUS_CLASS.get(status, "modified")
@@ -243,32 +245,57 @@ def render_unchanged_group(rules):
 
 def render_renumbered_group(entries, anchor_id):
     count = len(entries)
-    first_old = html.escape(entries[0]["old_rule"])
-    last_old  = html.escape(entries[-1]["old_rule"])
-    first_new = html.escape(entries[0]["rule"])
-    last_new  = html.escape(entries[-1]["rule"])
-    range_old = f"{first_old} — {last_old}" if count > 1 else first_old
-    range_new = f"{first_new} — {last_new}" if count > 1 else first_new
+    n_ref = sum(1 for e in entries if e["status"] == "reference_renumbered")
+    n_ren = count - n_ref
+
+    if n_ref == count:
+        group_label = f"{count} {'rule' if count == 1 else 'rules'} with refs updated"
+        fr = html.escape(entries[0]["rule"])
+        lr = html.escape(entries[-1]["rule"])
+        range_hint = f"{fr} \u2014 {lr}" if count > 1 else fr
+    elif n_ren == count:
+        group_label = f"{count} {'rule' if count == 1 else 'rules'} renumbered"
+        fo = html.escape(entries[0].get("old_rule", entries[0]["rule"]))
+        lo = html.escape(entries[-1].get("old_rule", entries[-1]["rule"]))
+        fn = html.escape(entries[0]["rule"])
+        ln = html.escape(entries[-1]["rule"])
+        range_hint = (f"{fo} \u2014 {lo} \u2192 {fn} \u2014 {ln}" if count > 1
+                      else f"{fo} \u2192 {fn}")
+    else:
+        group_label = f"{n_ren} renumbered, {n_ref} refs updated"
+        fo = html.escape(entries[0].get("old_rule", entries[0]["rule"]))
+        lr = html.escape(entries[-1]["rule"])
+        range_hint = f"{fo} \u2014 {lr}" if count > 1 else fo
 
     rows = []
     for entry in entries:
-        rows.append(
-            f'<div class="doc-renumber-row">'
-            f'<span class="doc-rule-num renumbered">{html.escape(entry["old_rule"])}</span>'
-            f'<span class="arrow">→</span>'
-            f'<span class="doc-rule-num renumbered">{html.escape(entry["rule"])}</span>'
-            f'<span class="renumber-row-text">{html.escape(entry["new_text"])}</span>'
-            f'</div>'
-        )
+        if entry["status"] == "reference_renumbered":
+            rows.append(
+                f'<div class="doc-renumber-row">'
+                f'<span class="doc-rule-num renumbered">{html.escape(entry["rule"])}</span>'
+                f'<span class="renumber-refs-badge">refs</span>'
+                f'<span class="renumber-row-text">{html.escape(entry["new_text"])}</span>'
+                f'</div>'
+            )
+        else:
+            old_r = entry.get("old_rule", entry["rule"])
+            rows.append(
+                f'<div class="doc-renumber-row">'
+                f'<span class="doc-rule-num renumbered">{html.escape(old_r)}</span>'
+                f'<span class="arrow">\u2192</span>'
+                f'<span class="doc-rule-num renumbered">{html.escape(entry["rule"])}</span>'
+                f'<span class="renumber-row-text">{html.escape(entry["new_text"])}</span>'
+                f'</div>'
+            )
+
+    range_span = f'<span class="range-hint">{range_hint}</span>' if range_hint else ""
 
     return (
         f'<details class="renumber-group" id="{anchor_id}">'
         f'<summary>'
-        f'<span class="expand-chevron">›</span>'
-        f'<span>{count} rules renumbered</span>'
-        f'<span class="range-hint">'
-        f'{range_old} → {range_new}'
-        f'</span>'
+        f'<span class="expand-chevron">\u203a</span>'
+        f'<span>{group_label}</span>'
+        f'{range_span}'
         f'</summary>'
         f'<div class="renumber-rules-list">{"".join(rows)}</div>'
         f'</details>'
@@ -359,13 +386,17 @@ def render_document_view(diff):
             return
         entries = list(current_renumbered)
         current_renumbered.clear()
-        if len(entries) >= _MIN_RENUMBER_GROUP:
+        # reference_renumbered entries are always collapsed (even singletons);
+        # pure-renumbered entries need at least _MIN_RENUMBER_GROUP to collapse.
+        all_ref = all(e["status"] == "reference_renumbered" for e in entries)
+        min_size = 1 if all_ref else _MIN_RENUMBER_GROUP
+        if len(entries) >= min_size:
             change_counter += 1
             anchor_id = f"c{change_counter}"
             segments.append(("renumber_group", entries, anchor_id))
             nav_items.append(("renumbered_group", {
-                "first_old": entries[0]["old_rule"],
-                "last_old":  entries[-1]["old_rule"],
+                "first_old": entries[0].get("old_rule", entries[0]["rule"]),
+                "last_old":  entries[-1].get("old_rule", entries[-1]["rule"]),
                 "first_new": entries[0]["rule"],
                 "last_new":  entries[-1]["rule"],
                 "count":     len(entries),
@@ -381,7 +412,7 @@ def render_document_view(diff):
         if entry["status"] == "unchanged":
             flush_renumbered()
             current_unchanged.append(entry)
-        elif entry["status"] == "renumbered":
+        elif entry["status"] in ("renumbered", "reference_renumbered"):
             flush_unchanged()
             current_renumbered.append(entry)
         else:
@@ -942,7 +973,7 @@ h2 { margin-top: 30px; }
 }
 .doc-renumber-row {
   display: grid;
-  grid-template-columns: 7ch 1.2rem 7ch 1fr;
+  grid-template-columns: 7ch auto auto 1fr;
   gap: 6px;
   align-items: baseline;
   padding: 3px 12px;
@@ -954,6 +985,20 @@ h2 { margin-top: 30px; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.renumber-refs-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background: #ecf6ff;
+  color: #1f4d76;
+  border: 1px solid #8fb9d9;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 """.strip()
     write_text(path, css + "\n")

@@ -66,6 +66,45 @@ def similarity(a, b):
     return SequenceMatcher(None, normalize_text(a), normalize_text(b)).ratio()
 
 
+_RULE_REF_RE = re.compile(r'\b(\d+\.\d+[a-z]*)\b')
+# Matches bare section refs preceded by "rule" or "rules", e.g. "see rule 726,"
+_RULE_SECTION_REF_RE = re.compile(r'\b(rules?\s+)(\d+)\b', re.IGNORECASE)
+
+
+def is_reference_only_change(old_text, new_text, renumber_map, section_renumber_map):
+    """Return True if old_text and new_text differ only in rule-number references
+    that are all accounted for by the supplied renumber maps (sub-rule and section).
+    """
+    predicted = _RULE_REF_RE.sub(
+        lambda m: renumber_map.get(m.group(1), m.group(1)), old_text
+    )
+    predicted = _RULE_SECTION_REF_RE.sub(
+        lambda m: m.group(1) + section_renumber_map.get(m.group(2), m.group(2)), predicted
+    )
+    return normalize_text(predicted) == normalize_text(new_text)
+
+
+def build_section_renumber_map(renumber_map):
+    """Infer section-level renames from sub-rule renumberings.
+    If all observed sub-rules of section N unanimously map to section M,
+    emit N → M in the returned dict.
+    """
+    from collections import defaultdict
+    votes = defaultdict(lambda: defaultdict(int))
+    for old_r, new_r in renumber_map.items():
+        old_sec = old_r.split(".")[0]
+        new_sec = new_r.split(".")[0]
+        if old_sec != new_sec:
+            votes[old_sec][new_sec] += 1
+
+    result = {}
+    for old_sec, counts in votes.items():
+        best_new = max(counts, key=counts.__getitem__)
+        if counts[best_new] == sum(counts.values()):  # unanimous
+            result[old_sec] = best_new
+    return result
+
+
 def detect_renumberings(removed, added, threshold=0.96):
     """
     Greedily pair removed rules with added rules by text similarity.
@@ -193,6 +232,22 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
         r for r in renumbered if normalize_text(r["old_text"]) != normalize_text(r["new_text"])
     ]
 
+    # Detect modified rules whose only change is rule-number references that
+    # map directly to a known renumbering.  These are really just reference
+    # maintenance — no semantic change — so we surface them like renumberings.
+    renumber_map = {r["old_rule"]: r["new_rule"] for r in renumbered}
+    section_renumber_map = build_section_renumber_map(renumber_map)
+    true_modified = []
+    ref_renumbered = []
+    for entry in modified:
+        if is_reference_only_change(entry["old_text"], entry["new_text"],
+                                    renumber_map, section_renumber_map):
+            ref_renumbered.append(entry)
+        else:
+            true_modified.append(entry)
+    modified = true_modified
+    ref_renumbered_lookup = {r["rule"]: r for r in ref_renumbered}
+
     # Build ordered list of all rules for the document-view HTML page.
     modified_lookup = {r["rule"]: r for r in modified}
     renumbered_new_lookup = {r["new_rule"]: r for r in renumbered}
@@ -205,6 +260,14 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
             all_entries.append({
                 "rule": rule_id,
                 "status": "modified",
+                "old_text": r["old_text"],
+                "new_text": r["new_text"],
+            })
+        elif rule_id in ref_renumbered_lookup:
+            r = ref_renumbered_lookup[rule_id]
+            all_entries.append({
+                "rule": rule_id,
+                "status": "reference_renumbered",
                 "old_text": r["old_text"],
                 "new_text": r["new_text"],
             })
@@ -241,8 +304,10 @@ def build_diff(old_path, new_path, renumber_threshold=0.96):
             "removed": len(removed_after),
             "renumbered": len(renumbered_only),
             "renumbered_and_modified": len(renumbered_and_modified),
+            "reference_renumbered": len(ref_renumbered),
         },
         "modified": modified,
+        "reference_renumbered": ref_renumbered,
         "added": [{"rule": k, "text": v} for k, v in sorted(added_after.items())],
         "removed": [{"rule": k, "text": v} for k, v in sorted(removed_after.items())],
         "renumbered": sorted(renumbered, key=lambda r: (r["old_rule"], r["new_rule"])),

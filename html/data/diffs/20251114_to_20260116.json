@@ -9,7 +9,8 @@
     "added": 6,
     "removed": 1,
     "renumbered": 3,
-    "renumbered_and_modified": 0
+    "renumbered_and_modified": 0,
+    "reference_renumbered": 0
   },
   "modified": [
     {
@@ -38,6 +39,7 @@
       "new_text": "\u201cPartner\u2014[text]\u201d means \u201cYou may designate two legendary cards as your commander rather than one if each of them has the same \u2018partner\u2014[text]\u2019 ability.\u201d The \u201cpartner\u2014[text]\u201d abilities are \u201cpartner\u2014Father & son,\u201d \u201cpartner\u2014Friends forever,\u201d and \u201cpartner\u2014Survivors.\u201d"
     }
   ],
+  "reference_renumbered": [],
   "added": [
     {
       "rule": "610.5",

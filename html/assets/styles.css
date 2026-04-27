@@ -438,7 +438,7 @@ h2 { margin-top: 30px; }
 }
 .doc-renumber-row {
   display: grid;
-  grid-template-columns: 7ch 1.2rem 7ch 1fr;
+  grid-template-columns: 7ch auto auto 1fr;
   gap: 6px;
   align-items: baseline;
   padding: 3px 12px;
@@ -450,4 +450,18 @@ h2 { margin-top: 30px; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.renumber-refs-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background: #ecf6ff;
+  color: #1f4d76;
+  border: 1px solid #8fb9d9;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
