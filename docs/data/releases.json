@@ -26,5 +26,12 @@
     "effective_date": "April 17, 2026",
     "rule_count": 3138,
     "glossary_count": 730
+  },
+  {
+    "source_file": "MagicCompRules 20260619.txt",
+    "file_date": "20260619",
+    "effective_date": "June 19, 2026",
+    "rule_count": 3153,
+    "glossary_count": 735
   }
 ]
